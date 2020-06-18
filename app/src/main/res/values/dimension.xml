@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="project_base_text_size">14sp</dimen>
+    <dimen name="project_bold_text_size">16sp</dimen>
+    <dimen name="project_large_text_size">28sp</dimen>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="activity_main_button_press">Press me!</string>
+    <string name="activity_main_textview_status_not_pressed">Not yet pressed!</string>
+    <string name="acitvity_main_textview_status_pressed">Pressed</string>
+
+    <string name="activity_registration_button_register">Зарегистрироваться</string>
+    <string name="activity_authorization_button_login">Войти</string>
+
+    <string name="textview_activity_students_description">На данной странице содержиться список студентов для сортировки</string>
+    <string name="button_activity_students_sort_byname">Отсортировать список по именам</string>
+    <string name="button_activity_students_sort_random">Отсортировать список в случайном порядке</string>
+    <string name="sorted_byname">Список отсортирован по имени</string>
+    <string name="sorted_random">Список отсортирован в случайном порядке</string>
+    <string name="dialog_restaurant_information_close">OK</string>
+
+    <string name="app_name">StepEducation</string>
+</resources>
