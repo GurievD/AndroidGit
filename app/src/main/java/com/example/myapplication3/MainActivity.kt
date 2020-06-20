@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
 
     fun initializeListeners() {
         button?.setOnClickListener {
-            val numeric: Boolean = editText!!.text.matches("[A-Za-z ]+".toRegex())
+            val nonNumeric: Boolean = editText!!.text.matches("[A-Za-z ]+".toRegex())
             Log.i("TAG", "SET MSG")
-            if (numeric) {
+            if (nonNumeric) {
                 textView?.setText(R.string.everything_fine)
             }
+            else if (editText!!.text.isBlank()) {
+                textView?.setText(R.string.blank)
+            }
             else {
-                !numeric
                 textView?.setText(R.string.error_we_have_digits)
 
             }
