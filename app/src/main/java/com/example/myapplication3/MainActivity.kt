@@ -1,12 +1,13 @@
 package com.example.myapplication3
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     var button: Button? = null
@@ -36,12 +37,17 @@ class MainActivity : AppCompatActivity() {
 
                 if (nonNumeric) {
                     textView?.setText(R.string.everything_fine)
+                    textView?.setTextColor(ContextCompat.getColor(baseContext, R.color.colorDefault))
+
                 } else if (!nonNumeric) {
                     textView?.setText(R.string.error_we_have_digits)
+                    textView?.setTextColor(ContextCompat.getColor(baseContext, R.color.colorRed))
                 }
             }
             else if (editText!!.text.isBlank()) {
                 textView?.setText(R.string.blank)
+                textView?.setTextColor(ContextCompat.getColor(baseContext, R.color.colorDefault))
+
             }
 
         }
