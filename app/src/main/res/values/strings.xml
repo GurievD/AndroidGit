@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application3</string>
+    <string name="editor">Имя</string>
+    <string name="action">action</string>
+    <string name="everything_fine">Everything looks fine!</string>
+    <string name="error_we_have_digits">Error, we have digits in our name!</string>
+
+</resources>
