@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Application4</string>
+    <string name="editText_enterPassword">Введите пароль</string>
+    <string name="editText_confirmPassword">Подтвердите пароль</string>
+    <string name="editText_enterEmail">Введите e-mail</string>
+    <string name="editText_enterName">Введите имя</string>
+    <string name="button_action">Action</string>
+    <string name="editText_incorrectEmail">Неправильно введён e-mail. Пример: abcd4@mail.ru</string>
+    <string name="editText_emptyPasswordFields">Поля для паролей абсолютно пусты!</string>
+    <string name="editText_passwordMatch">Пароли совпадают. Подтверждение пароля успешно!</string>
+    <string name="editText_passwordNotMatch">Пароли не совпадают. Проверьте поля ещё раз!</string>
+    <string name="editText_emptyNameAndEmailFields">Поле "Имя" и поле "E-mail" пусты</string>
+    <string name="editText_emptyNameField">Поле "Имя" пусто</string>
+    <string name="editText_emptyEmailField">Поле "E-mail" пусто</string>
+
+</resources>
