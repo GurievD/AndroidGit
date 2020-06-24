@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application6</string>
+    <string name="edit_login">Логин</string>
+    <string name="edit_password">Пароль</string>
+    <string name="button_action">Скрыть/показать \n все View</string>
+    <string name="button_action2">Считать текст</string>
+    <string name="edit_kotlin">Kotlin</string>
+    <string name="edit_so_sad">It is so sad =(</string>
+
+</resources>
