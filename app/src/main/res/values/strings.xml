@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">My Application7</string>
-    <string name="check">Check</string>
+    <string name="activity_main_button_check">Check</string>
 </resources>
