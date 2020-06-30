@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application13</string>
+    <string name="activity_main_textView_show_API_version">Версия API - %s\n%s (Android %s)</string>
+
+</resources>
