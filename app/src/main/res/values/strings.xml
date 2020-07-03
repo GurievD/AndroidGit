@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application17</string>
+    <string name="activity_main_editText_hintName">Имя</string>
+    <string name="activity_main_editText_hintLastName">Фамилия</string>
+    <string name="activity_main_button_action">Отобразить данные</string>
+    <string name="get_data_textView_Name">Имя:\n%s</string>
+    <string name="get_data_textView_lastName">Фамилия:\n%s</string>
+    <string name="activity_main_textView_emptyFieldError">Не все поля заполнены!</string>
+    <string name="activity_main_button_getBack">Заполнить данные</string>
+
+</resources>

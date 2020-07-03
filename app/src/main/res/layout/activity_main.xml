@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+    <ImageView
+        android:id="@+id/imageView_activity_main_showPicture"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        android:background="#ffffff" />
+
+
+    <EditText
+        android:id="@+id/editText_activity_main_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/activity_main_editText_hintName"
+        android:maxLength="25"/>
+
+    <EditText
+        android:id="@+id/editText_activity_main_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/activity_main_editText_hintLastName"
+        android:maxLength="25"/>
+
+    <Button
+        android:id="@+id/button_activity_main_intentAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/activity_main_button_action"
+        />
+
+    <TextView
+        android:id="@+id/textView_activity_main_invalidData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+
+
+</LinearLayout>
