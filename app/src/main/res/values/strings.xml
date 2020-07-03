@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application16</string>
+    <string name="activity_main_editText_hintName">Имя</string>
+    <string name="activity_main_editText_hintLogin">Логин</string>
+    <string name="activity_main_editText_hintPassword">Пароль</string>
+    <string name="activity_main_editText_hintEmail">E-mail</string>
+    <string name="activity_main_button_intentAction">Action</string>
+    <string name="get_data_textView_Name">Имя:\n%s</string>
+    <string name="get_data_textView_Email">E-mail:\n%s</string>
+    <string name="get_data_textView_Login">Логин:\n%s</string>
+    <string name="get_data_textView_Password">Пароль:\n%s</string>
+    <string name="activity_main_textView_emptyFieldError">Не все поля заполнены!</string>
+    <string name="activity_main_textView_invalidEmail">Пример: guriev_denis96@mail.ru\n\nEmail должен начинаться с буквы\nДопускается только 1 символ "@"\nДомен (ru, bk, и т.д.) после точки должен иметь 2 буквы\nМинимум 4 буквы/цифры, минимум одна цифра и минимум одна буква до "@"\nЗапрещены все символы (кроме "_" и "-") до "@"</string>
+
+</resources>
