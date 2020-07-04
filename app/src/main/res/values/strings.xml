@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Call+Camera</string>
+    <string name="activity_main_button_actionCall">Call Button</string>
+    <string name="activity_main_button_actionCamera">Camera Button</string>
+</resources>
