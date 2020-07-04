@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PracticeWork6</string>
+    <string name="activity_main_button_intentAction">action</string>
+    <string name="get_data_textView_showData">Текст:\n%s</string>
+</resources>
