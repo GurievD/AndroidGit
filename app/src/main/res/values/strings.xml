@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">PracticeWork6.2</string>
+    <string name="activity_main_button_takePicture">Capture</string>
+</resources>
