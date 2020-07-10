@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:gravity="center">
+
+    <TextView
+        android:text="@string/info_fragment_students_textView_fragment2"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="@string/info_fragment_students_textView_studentNameHeader"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textView_info_fragment_students_studentName"
+        android:textColor="@color/color_black"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="@string/info_fragment_students_textView_descriptionHeader"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textView_info_fragment_students_studentDescription"
+        android:textColor="@color/color_black"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="@string/info_fragment_students_textView_imageHeader"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/imageView_info_fragment_students_showPicture"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:foregroundGravity="center"
+        android:background="#ffffff" />
+</LinearLayout>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FragmentsApplication</string>
+    <string name="activity_main_button_goToFragments">Фрагменты</string>
+    <string name="info_fragment_students_textView_studentNameHeader">Имя студента: </string>
+    <string name="info_fragment_students_textView_descriptionHeader">Описание: </string>
+    <string name="info_fragment_students_textView_imageHeader">Картинка: </string>
+    <string name="info_fragment_students_textView_fragment2">Фрагмент 2. Детальная информация.</string>
+    <string name="fragment_students_textView_fragment1">Фрагмент 1. Будущий список RecyclerView.</string>
+</resources>
