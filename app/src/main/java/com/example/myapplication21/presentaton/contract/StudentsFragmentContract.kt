@@ -23,5 +23,12 @@ interface StudentsFragmentContract {
 
         fun initiateSortStudentsRandom()
 
+        fun initiateSortStudentsByMark()
+
+        fun initiateFindStudentByQuery(editText: String)
+
+        fun initiateAddStudent(student: Student)
+
+
     }
 }

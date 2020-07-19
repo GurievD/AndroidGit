@@ -17,26 +17,20 @@ class StudentsActivity: AppCompatActivity() {
 
     fun initializeDefaultFragment(){
         if(currentFragment == null){
-            currentFragment =
-                StudentsFragment()
+            currentFragment = StudentsFragment()
             displayFragment(currentFragment!!)
         }
     }
 
     fun displayFragment(fragment: Fragment){
-
         this.currentFragment = fragment
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         supportFragmentManager.executePendingTransactions()
-        fragmentTransaction.add(
-            R.id.relativeLayout_activity_students_fragmentContainer,
-            fragment,
-            fragment.javaClass.name ?: "")
+        fragmentTransaction.add(R.id.relativeLayout_activity_students_fragmentContainer, fragment, "StudentsFragment")
 
         fragmentTransaction.addToBackStack("Name")
         fragmentTransaction.commit()
-
     }
 
 
