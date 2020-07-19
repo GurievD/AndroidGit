@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editText_student_form_inputName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputName"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editText_student_form_inputLastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputLastName"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editText_student_form_inputDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputDescription"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/editText_student_form_inputGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputGroup"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/editText_student_form_inputMark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputMark"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:id="@+id/textView_student_form_showError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/button_student_form_confirmAddNewStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/student_form_button_confirmAddNewStudent"/>
+
+</LinearLayout>
