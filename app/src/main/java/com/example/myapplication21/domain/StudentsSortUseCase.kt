@@ -10,4 +10,8 @@ class StudentsSortUseCase {
     fun initiateSortStudentsRandom(arrayListOfStudents: ArrayList<Student>) : ArrayList<Student>? {
         return arrayListOfStudents.apply { shuffle() }
     }
+
+    fun initiateSortStudentsByMark(arrayListOfStudents: ArrayList<Student>) : ArrayList<Student>? {
+        return arrayListOfStudents.apply { sortByDescending { student -> student.studentMark } }
+    }
 }

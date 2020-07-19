@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">My Application21</string>
+    <string name="student_form_fieldBlank">Не все поля заполнены!</string>
+    <string name="student_form_must_be_in_range">Группа должна быть в пределе от 1 до 11\nОценка должна быть в пределе от 1 до 12</string>
+    <string name="activity_main_textView_openRecyclerViewList">Открыть список RecyclerView</string>
+    <string name="activity_registration_button_goBack">Вернуться обратно</string>
+    <string name="fragment_students_button_sortByRandom">Фильтрация cлучайно</string>
+    <string name="fragment_students_button_sortByGrade">Фильтрация по оценке</string>
+    <string name="fragment_students_button_sortByName">Фильтрация по имени</string>
+    <string name="fragment_students_editText_searchPlaceholder">Поиск</string>
+    <string name="list_item_button_moreAboutStudent">Подробнее</string>
+    <string name="student_form_editText_inputName">Имя</string>
+    <string name="student_form_editText_inputLastName">Фамилия</string>
+    <string name="student_form_editText_inputDescription">Описание</string>
+    <string name="student_form_editText_inputGroup">Группа</string>
+    <string name="student_form_editText_inputMark">Оценка</string>
+    <string name="student_form_button_confirmAddNewStudent">Подтвердить</string>
+
 </resources>

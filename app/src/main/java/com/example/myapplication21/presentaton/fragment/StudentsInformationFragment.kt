@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
+import com.example.myapplication21.presentaton.base.BaseContract
 import kotlinx.android.synthetic.main.activity_registration.*
 
-class StudentsInformationFragment: Fragment() {
+class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
     var rootView: View? = null
 
     override fun onCreateView(
@@ -25,15 +26,28 @@ class StudentsInformationFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initializeViews()
+        initializeListeners()
+    }
+
+    override fun initializeViews() {
         val getImage = arguments!!.getInt("image")
         val getName = arguments!!.getString("name")
         val getGroup = arguments!!.getInt("group")
         val getLastName = arguments!!.getString("lastName")
         val getDescription = arguments!!.getString("description")
+        val getMark = arguments!!.getFloat("mark")
 
-        textview_activity_registration_name.text = "$getName $getLastName"
-        textview_activity_registration_description.text = "$getDescription"
-        textview_activity_registration_group.text = "$getGroup-й класс"
-        imageView_activity_registration_image.setImageResource(getImage)
+        textView_activity_registration_showNameAndLastName.text = "$getName $getLastName"
+        textView_activity_registration_showDescription.text = "$getDescription"
+        textView_activity_registration_showGroup.text = "$getGroup-й класс"
+        imageView_activity_registration_showImage.setImageResource(getImage)
+        textView_activity_registration_showMark.text = "Средняя оценка: $getMark"
+    }
+
+    override fun initializeListeners() {
+        button_activity_registration_goBack.setOnClickListener{
+            fragmentManager?.popBackStack()
+        }
     }
 }

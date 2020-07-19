@@ -14,11 +14,12 @@ import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresent
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import kotlinx.android.synthetic.main.fragment_students.*
 
-class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
+class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItemClickListener, View.OnClickListener {
     var rootView: View? = null
     var arrayListOfStudents: ArrayList<Student> = ArrayList()
     var studentAdapter: StudentAdapter? = null
-     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
+
+    lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,11 +40,11 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
+        initializeListeners()
         studentsFragmentPresenter.initializeData()
-        studentsFragmentPresenter.studentsSortUseCase.initiateSortStudentsByName(arrayListOfStudents)
     }
 
-    fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Int): StudentsInformationFragment {
+    fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Int, studentMark: Float): StudentsInformationFragment {
         val studentsInformationFragment = StudentsInformationFragment()
         val bundleOfArguments = Bundle()
         bundleOfArguments.putString("name", studentName)
@@ -51,18 +52,57 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
         bundleOfArguments.putInt("group", studentGroup)
         bundleOfArguments.putString("description", studentDescription)
         bundleOfArguments.putInt("image", studentImage)
+        bundleOfArguments.putFloat("mark", studentMark)
         studentsInformationFragment.arguments = bundleOfArguments
+
         return studentsInformationFragment
+    }
+
+    override fun onClick(view: View?) {
+            when (view?.id) {
+                R.id.button_fragment_students_sortByName ->   {
+                    studentsFragmentPresenter.initiateSortStudentsByName()
+                    initiateUpdateAdapter()
+                }
+                R.id.button_fragment_students_sortByGrade -> {
+                    studentsFragmentPresenter.initiateSortStudentsByMark()
+                    initiateUpdateAdapter()
+                }
+                R.id.button_fragment_students_sortByRandom -> {
+                    studentsFragmentPresenter.initiateSortStudentsRandom()
+                    initiateUpdateAdapter()
+                }
+                R.id.FAB_fragment_students_findByQuery -> {
+                    studentsFragmentPresenter.initiateFindStudentByQuery(editText_fragment_students_searchQuery.text.toString())
+                    initiateUpdateAdapter()
+                }
+                R.id.FAB_fragment_students_clearField -> {
+                    editText_fragment_students_searchQuery.text = null
+                    studentsFragmentPresenter.initiateFindStudentByQuery("")
+                    initiateUpdateAdapter()
+                }
+
+                R.id.FAB_fragment_students_goToForm -> {
+                    val fragmentTransaction = fragmentManager?.beginTransaction()
+
+                    fragmentManager?.executePendingTransactions()
+                    fragmentTransaction?.add(R.id.relativeLayout_activity_students_fragmentContainer, StudentFormFragment(), "AddNewStudent")
+                    fragmentTransaction?.hide(this)
+                    fragmentTransaction?.addToBackStack("name")
+                    fragmentTransaction?.commit()
+
+                }
+            }
     }
 
     override fun onItemClick(item: Student, position: Int) {
         val fragmentTransaction = fragmentManager?.beginTransaction()
-        val studentsInformationFragment: StudentsInformationFragment = setArguments(item.studentName, item.studentLastName, item.studentGroup, item.studentDescription, item.studentImage)
+        val studentsInformationFragment: StudentsInformationFragment = setArguments(item.studentName, item.studentLastName, item.studentGroup, item.studentDescription, item.studentImage, item.studentMark)
 
         fragmentManager?.executePendingTransactions()
 
-        fragmentTransaction?.replace(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment)
-
+        fragmentTransaction?.add(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
+        fragmentTransaction?.hide(this)
         fragmentTransaction?.addToBackStack("name")
         fragmentTransaction?.commit()
     }
@@ -88,6 +128,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
     override fun processData(students: ArrayList<Student>) {
         this.arrayListOfStudents.clear()
         this.arrayListOfStudents.addAll(students)
+
     }
 
     override fun initiateUpdateAdapter() {
@@ -95,7 +136,14 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
     }
 
     override fun initializeListeners() {
-//        button_fragment_students_action?.setOnClickListener(this)
+        button_fragment_students_sortByName.setOnClickListener(this)
+        button_fragment_students_sortByGrade.setOnClickListener(this)
+        button_fragment_students_sortByRandom.setOnClickListener(this)
+        FAB_fragment_students_findByQuery.setOnClickListener(this)
+        FAB_fragment_students_clearField.setOnClickListener(this)
+        FAB_fragment_students_goToForm.setOnClickListener(this)
     }
+
+
 
 }

@@ -10,9 +10,9 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 class StudentHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    var studentName: TextView = itemView.text_view_list_item_studentName
+    var studentName: TextView = itemView.textView_list_item_studentName
 
-    var studentGroup: TextView = itemView.text_view_list_item_studentGroup
+    var studentGroup: TextView = itemView.textView_list_item_studentGroup
     var buttonMoreAboutStudent: Button = itemView.button_list_item_moreAboutStudent
     fun initiateBind(student: Student, action: OnStudentItemClickListener){
         studentName.text = student.studentName

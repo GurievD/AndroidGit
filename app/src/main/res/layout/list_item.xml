@@ -3,23 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
-
-
-
+    android:padding="6dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/text_view_list_item_studentName"
+                    android:id="@+id/textView_list_item_studentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/text_view_list_item_studentGroup"
+                    android:id="@+id/textView_list_item_studentGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
@@ -28,9 +25,7 @@
                     android:id="@+id/button_list_item_moreAboutStudent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Подробнее"
+                    android:text="@string/list_item_button_moreAboutStudent"
                     android:layout_gravity="center"/>
-
         </LinearLayout>
-
 </LinearLayout>
