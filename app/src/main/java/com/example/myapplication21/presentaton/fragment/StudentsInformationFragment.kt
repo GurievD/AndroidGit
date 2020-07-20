@@ -1,5 +1,6 @@
 package com.example.myapplication21.presentaton.fragment
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,8 @@ class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
     }
 
     override fun initializeViews() {
-        val getImage = arguments!!.getInt("image")
+        val getImage: Bitmap? = arguments!!.getParcelable("bm")
+
         val getName = arguments!!.getString("name")
         val getGroup = arguments!!.getInt("group")
         val getLastName = arguments!!.getString("lastName")
@@ -41,7 +43,7 @@ class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
         textView_activity_registration_showNameAndLastName.text = "$getName $getLastName"
         textView_activity_registration_showDescription.text = "$getDescription"
         textView_activity_registration_showGroup.text = "$getGroup-й класс"
-        imageView_activity_registration_showImage.setImageResource(getImage)
+        imageView_activity_registration_showImage.setImageBitmap(getImage)
         textView_activity_registration_showMark.text = "Средняя оценка: $getMark"
     }
 

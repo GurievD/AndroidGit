@@ -8,10 +8,11 @@
 
     <ImageView
         android:id="@+id/imageView_activity_registration_showImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
         android:layout_marginTop="50dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        />
 
     <TextView
         android:id="@+id/textView_activity_registration_showNameAndLastName"

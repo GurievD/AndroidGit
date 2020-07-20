@@ -1,5 +1,6 @@
 package com.example.myapplication21.presentaton.fragment
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
 import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresenter
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import kotlinx.android.synthetic.main.fragment_students.*
+
 
 class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItemClickListener, View.OnClickListener {
     var rootView: View? = null
@@ -44,14 +46,15 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
         studentsFragmentPresenter.initializeData()
     }
 
-    fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Int, studentMark: Float): StudentsInformationFragment {
+    fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Bitmap?, studentMark: Float): StudentsInformationFragment {
         val studentsInformationFragment = StudentsInformationFragment()
         val bundleOfArguments = Bundle()
+
         bundleOfArguments.putString("name", studentName)
         bundleOfArguments.putString("lastName", studentLastName)
         bundleOfArguments.putInt("group", studentGroup)
         bundleOfArguments.putString("description", studentDescription)
-        bundleOfArguments.putInt("image", studentImage)
+        bundleOfArguments.putParcelable("bm", studentImage)
         bundleOfArguments.putFloat("mark", studentMark)
         studentsInformationFragment.arguments = bundleOfArguments
 
@@ -97,7 +100,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
 
     override fun onItemClick(item: Student, position: Int) {
         val fragmentTransaction = fragmentManager?.beginTransaction()
-        val studentsInformationFragment: StudentsInformationFragment = setArguments(item.studentName, item.studentLastName, item.studentGroup, item.studentDescription, item.studentImage, item.studentMark)
+        val studentsInformationFragment: StudentsInformationFragment = setArguments(item.studentName, item.studentLastName, item.studentGroup, item.studentDescription, item.avatar, item.studentMark)
 
         fragmentManager?.executePendingTransactions()
 

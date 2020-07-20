@@ -15,5 +15,6 @@
     <string name="student_form_editText_inputGroup">Группа</string>
     <string name="student_form_editText_inputMark">Оценка</string>
     <string name="student_form_button_confirmAddNewStudent">Подтвердить</string>
+    <string name="student_form_button_addStudentPhoto">Добавить фото студента</string>
 
 </resources>
