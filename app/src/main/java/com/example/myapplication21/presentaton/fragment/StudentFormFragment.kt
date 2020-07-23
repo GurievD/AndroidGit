@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
 import com.example.myapplication21.data.Student
 import com.example.myapplication21.presentaton.base.BaseContract
+import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.student_form.*
 
 
@@ -74,13 +75,14 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
                     bitmap = imageView_student_form_showStudentPhoto.drawable.toBitmap()
                     when {
                         editTextGroup.toInt() in 1..11 && editTextMark.toFloat() in 1.0..12.0 -> {
-                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, bitmap, editTextGroup.toInt(), editTextMark.toFloat())
+                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, bitmap, editTextGroup.toInt(), editTextMark.toFloat(), true)
                             val findStudentsFragment = fragmentManager?.findFragmentByTag("StudentsFragment") as StudentsFragment
 
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
                             fragmentManager?.popBackStack()
 
-                            findStudentsFragment.studentsFragmentPresenter.initiateSortStudentsByName()
+                            findStudentsFragment.studentsFragmentPresenter.arrayListOfStudents.getBest3Students()
+                            findStudentsFragment.studentsFragmentPresenter.initiateSortStudentsByMark()
                         }
                         else -> {
                             textView_student_form_showError.text = resources.getString(R.string.student_form_must_be_in_range)

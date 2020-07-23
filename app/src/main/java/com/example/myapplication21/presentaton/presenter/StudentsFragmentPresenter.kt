@@ -25,7 +25,6 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
         Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565)
     )
 
-
     override fun attach(view: StudentsFragmentContract.View) {
         this.studentsFragmentContractView = view
         setBitmapColors()
@@ -33,15 +32,16 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
     }
 
     override fun initializeData(){
+
         studentsFragmentContractView?.processData(arrayListOfStudents.apply {
-            add(Student("Alexei", "Sidorov", "Good student", bitmapList[0], 7, 6.7F))
-            add(Student("Denis", "Guryev", "Ordinary student", bitmapList[1], 8, 4.6F))
-            add(Student("Alexandr", "Petrov", "Great student", bitmapList[2], 8, 6.9F))
-            add(Student("Dmitry", "Dmitrov", "Ordinary student", bitmapList[3], 9, 3.9F))
-            add(Student("Pavel", "Smirnov", "Ordinary student", bitmapList[4], 11, 4.3F))
-            add(Student("Vladimir", "Vasilyev", "Bad student", bitmapList[5], 9, 2.6F))
-            add(Student("Maxim", "Romanyuk", "Good student", bitmapList[6], 7, 5.9F))
-            add(Student("Roman", "Kondratev", "Perfect student", bitmapList[7], 10, 9.8F))
+            add(Student("Alexei", "Sidorov", "Good student", bitmapList[0], 7, 6.7F,  true))
+            add(Student("Denis", "Guryev", "Ordinary student", bitmapList[1], 8, 4.6F, true))
+            add(Student("Alexandr", "Petrov", "Great student", bitmapList[2], 8, 6.9F, true))
+            add(Student("Dmitry", "Dmitrov", "Ordinary student", bitmapList[3], 9, 3.9F, true))
+            add(Student("Pavel", "Smirnov", "Ordinary student", bitmapList[4], 11, 4.3F, true))
+            add(Student("Vladimir", "Vasilyev", "Bad student", bitmapList[5], 9, 2.6F, true))
+            add(Student("Maxim", "Romanyuk", "Good student", bitmapList[6], 7, 5.9F, true))
+            add(Student("Roman", "Kondratev", "Perfect student", bitmapList[7], 10, 9.8F, true))
             })
         studentsFragmentContractView?.initiateUpdateAdapter()
     }

@@ -2,7 +2,7 @@
     <string name="app_name">My Application21</string>
     <string name="student_form_fieldBlank">Не все поля заполнены!</string>
     <string name="student_form_must_be_in_range">Группа должна быть в пределе от 1 до 11\nОценка должна быть в пределе от 1 до 12</string>
-    <string name="activity_main_textView_openRecyclerViewList">Открыть список RecyclerView</string>
+    <string name="activity_main_button_openRecyclerViewList">Открыть список RecyclerView</string>
     <string name="activity_registration_button_goBack">Вернуться обратно</string>
     <string name="fragment_students_button_sortByRandom">Фильтрация cлучайно</string>
     <string name="fragment_students_button_sortByGrade">Фильтрация по оценке</string>
@@ -16,5 +16,7 @@
     <string name="student_form_editText_inputMark">Оценка</string>
     <string name="student_form_button_confirmAddNewStudent">Подтвердить</string>
     <string name="student_form_button_addStudentPhoto">Добавить фото студента</string>
+    <string name="activity_main_button_openLeetCode">Открыть задачи Leetcode</string>
+    <string name="leetcode_file_editText_checkPalindrome">Проверить</string>
 
 </resources>

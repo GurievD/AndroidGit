@@ -13,6 +13,7 @@ import com.example.myapplication21.presentaton.adapter.StudentAdapter
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
 import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresenter
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
+import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.fragment_students.*
 
 
@@ -38,12 +39,13 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeViews()
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
-        initializeListeners()
         studentsFragmentPresenter.initializeData()
+        initializeViews()
+        initializeListeners()
+
     }
 
     fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Bitmap?, studentMark: Float): StudentsInformationFragment {
@@ -64,6 +66,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
     override fun onClick(view: View?) {
             when (view?.id) {
                 R.id.button_fragment_students_sortByName ->   {
+
                     studentsFragmentPresenter.initiateSortStudentsByName()
                     initiateUpdateAdapter()
                 }
@@ -81,7 +84,6 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
                 }
                 R.id.FAB_fragment_students_clearField -> {
                     editText_fragment_students_searchQuery.text = null
-                    studentsFragmentPresenter.initiateFindStudentByQuery("")
                     initiateUpdateAdapter()
                 }
 
@@ -117,6 +119,8 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
 
     override fun initializeViews(){
         recyclerView_fragment_students_list?.visibility = View.VISIBLE
+        arrayListOfStudents.getBest3Students()
+        initiateUpdateAdapter()
     }
 
     override fun initializeLayoutManager(){
