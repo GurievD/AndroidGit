@@ -79,6 +79,7 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
                             val findStudentsFragment = fragmentManager?.findFragmentByTag("StudentsFragment") as StudentsFragment
 
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
+
                             fragmentManager?.popBackStack()
 
                             findStudentsFragment.studentsFragmentPresenter.arrayListOfStudents.getBest3Students()

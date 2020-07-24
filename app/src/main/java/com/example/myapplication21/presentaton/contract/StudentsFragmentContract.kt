@@ -19,16 +19,14 @@ interface StudentsFragmentContract {
     interface Presenter : BaseContract.BasePresenter<View>{
         fun initializeData()
 
+        fun initiateSortStudentsByMark()
+
         fun initiateSortStudentsByName()
 
         fun initiateSortStudentsRandom()
 
-        fun initiateSortStudentsByMark()
-
         fun initiateFindStudentByQuery(editText: String)
 
         fun initiateAddStudent(student: Student)
-
-
     }
 }

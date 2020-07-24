@@ -33,19 +33,18 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
             R.layout.fragment_students,
             container,
             false)
-
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
         studentsFragmentPresenter.initializeData()
         initializeViews()
         initializeListeners()
-
     }
 
     fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Bitmap?, studentMark: Float): StudentsInformationFragment {
@@ -68,10 +67,12 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
                 R.id.button_fragment_students_sortByName ->   {
 
                     studentsFragmentPresenter.initiateSortStudentsByName()
+
                     initiateUpdateAdapter()
                 }
                 R.id.button_fragment_students_sortByGrade -> {
                     studentsFragmentPresenter.initiateSortStudentsByMark()
+
                     initiateUpdateAdapter()
                 }
                 R.id.button_fragment_students_sortByRandom -> {
