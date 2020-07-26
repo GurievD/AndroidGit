@@ -3,7 +3,9 @@ package com.example.myapplication21.presentaton.presenter
 import android.graphics.Bitmap
 import android.graphics.Color
 import com.example.myapplication21.data.Student
-import com.example.myapplication21.domain.StudentsSortUseCase
+import com.example.myapplication21.domain.usecase.function.sort.SortByMarkUseCase
+import com.example.myapplication21.domain.usecase.function.sort.SortByNameUseCase
+import com.example.myapplication21.domain.usecase.function.sort.SortByRandomUseCase
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
 import java.util.*
 import kotlin.collections.ArrayList
@@ -11,8 +13,11 @@ import kotlin.collections.ArrayList
 
 class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
     var studentsFragmentContractView: StudentsFragmentContract.View? = null
-    var studentsSortUseCase: StudentsSortUseCase = StudentsSortUseCase()
     var arrayListOfStudents: ArrayList<Student> = ArrayList()
+
+    var sortByNameUseCase: SortByNameUseCase = SortByNameUseCase()
+    var sortByMarkUseCase: SortByMarkUseCase = SortByMarkUseCase()
+    var sortByRandomUseCase: SortByRandomUseCase = SortByRandomUseCase()
 
     var bitmapList: ArrayList<Bitmap> = arrayListOf(
         Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565),
@@ -47,19 +52,19 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
     }
 
     override fun initiateSortStudentsByName() {
-        studentsSortUseCase.initiateSortStudentsByName(arrayListOfStudents)
+        sortByNameUseCase.initiateSortStudentsByName(arrayListOfStudents)
         studentsFragmentContractView?.processData(arrayListOfStudents)
         studentsFragmentContractView?.initiateUpdateAdapter()
     }
 
      override fun initiateSortStudentsRandom() {
-        studentsSortUseCase.initiateSortStudentsRandom(arrayListOfStudents)
+        sortByRandomUseCase.initiateSortStudentsRandom(arrayListOfStudents)
         studentsFragmentContractView?.processData(arrayListOfStudents)
         studentsFragmentContractView?.initiateUpdateAdapter()
     }
 
     override fun initiateSortStudentsByMark() {
-        studentsSortUseCase.initiateSortStudentsByMark(arrayListOfStudents)
+        sortByMarkUseCase.initiateSortStudentsByMark(arrayListOfStudents)
         studentsFragmentContractView?.processData(arrayListOfStudents)
         studentsFragmentContractView?.initiateUpdateAdapter()
     }

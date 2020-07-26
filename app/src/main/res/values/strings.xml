@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application21</string>
+    <string name="app_name">Helpers and Usecases</string>
     <string name="student_form_fieldBlank">Не все поля заполнены!</string>
     <string name="student_form_must_be_in_range">Группа должна быть в пределе от 1 до 11\nОценка должна быть в пределе от 1 до 12</string>
     <string name="activity_main_button_openRecyclerViewList">Открыть список RecyclerView</string>
@@ -18,5 +18,12 @@
     <string name="student_form_button_addStudentPhoto">Добавить фото студента</string>
     <string name="activity_main_button_openLeetCode">Открыть задачи Leetcode</string>
     <string name="leetcode_file_editText_checkPalindrome">Проверить</string>
+    <string name="speech_recognizer_button_action">ACTION</string>
+    <string name="activity_main_button_programs">Открыть программы\n(камера, sms, распознавание речи)</string>
+    <string name="programs_button_speechRecognizer">Открыть Speech Recognizer</string>
+    <string name="programs_button_openCamera">Открыть камеру</string>
+    <string name="programs_button_openSMS">Открыть SMS</string>
+    <string name="social_network_button_sendToWhatsapp">Отправить на Whatsapp</string>
+    <string name="social_network_editText_setMessage">Введите сообщение Whatsapp</string>
 
 </resources>

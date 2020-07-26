@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.myapplication21.R
-import kotlinx.android.synthetic.main.activity_main.button_leetcode_file_checkPalindrome
 import kotlinx.android.synthetic.main.leetcode_file.*
 
 class CheckPalindrome: AppCompatActivity() {

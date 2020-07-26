@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <GridLayout
-        android:id="@+id/gridLayout_fragment_students_gridForPanel"
+        android:id="@+id/gridLayout_leetcode_file_gridForPanel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

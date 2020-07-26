@@ -39,7 +39,7 @@ class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
         val getLastName = arguments!!.getString("lastName")
         val getDescription = arguments!!.getString("description")
         val getMark = arguments!!.getFloat("mark")
-
+        
         textView_activity_registration_showNameAndLastName.text = "$getName $getLastName"
         textView_activity_registration_showDescription.text = "$getDescription"
         textView_activity_registration_showGroup.text = "$getGroup-й класс"

@@ -32,7 +32,6 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
     var studentGroup: EditText? = null
     var imageURI: Uri? = null
     var bitmap: Bitmap? = null
-
     var reqCode = 123
     override fun onCreateView(
         inflater: LayoutInflater,
