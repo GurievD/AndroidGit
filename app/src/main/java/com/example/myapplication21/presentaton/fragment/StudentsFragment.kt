@@ -1,6 +1,5 @@
 package com.example.myapplication21.presentaton.fragment
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,16 +46,11 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
         initializeListeners()
     }
 
-    fun setArguments(studentName: String, studentLastName: String, studentGroup: Int, studentDescription: String, studentImage: Bitmap?, studentMark: Float): StudentsInformationFragment {
+    fun setArguments(studentObject: Student): StudentsInformationFragment {
         val studentsInformationFragment = StudentsInformationFragment()
         val bundleOfArguments = Bundle()
+        bundleOfArguments.putParcelable("studObject", studentObject)
 
-        bundleOfArguments.putString("name", studentName)
-        bundleOfArguments.putString("lastName", studentLastName)
-        bundleOfArguments.putInt("group", studentGroup)
-        bundleOfArguments.putString("description", studentDescription)
-        bundleOfArguments.putParcelable("bm", studentImage)
-        bundleOfArguments.putFloat("mark", studentMark)
         studentsInformationFragment.arguments = bundleOfArguments
 
         return studentsInformationFragment
@@ -103,7 +97,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, OnStudentItem
 
     override fun onItemClick(item: Student, position: Int) {
         val fragmentTransaction = fragmentManager?.beginTransaction()
-        val studentsInformationFragment: StudentsInformationFragment = setArguments(item.studentName, item.studentLastName, item.studentGroup, item.studentDescription, item.avatar, item.studentMark)
+        val studentsInformationFragment: StudentsInformationFragment = setArguments(arrayListOfStudents.get(position))
 
         fragmentManager?.executePendingTransactions()
 

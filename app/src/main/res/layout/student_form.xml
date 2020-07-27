@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,61 +11,88 @@
         android:layout_height="50dp"
         android:layout_margin="5dp"
         android:src="@drawable/noavatar"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/button_student_form_addStudentPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/student_form_button_addStudentPhoto" />
+        android:text="@string/student_form_button_addStudentPhoto"
+        app:layout_constraintTop_toBottomOf="@id/imageView_student_form_showStudentPhoto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
         android:id="@+id/editText_student_form_inputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputName"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/button_student_form_addStudentPhoto"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
         android:id="@+id/editText_student_form_inputLastName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputLastName"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
         android:id="@+id/editText_student_form_inputDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputDescription"
-        android:inputType="text"/>
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputLastName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
         android:id="@+id/editText_student_form_inputGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputGroup"
-        android:inputType="number"/>
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputDescription"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <EditText
         android:id="@+id/editText_student_form_inputMark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputMark"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputGroup"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
         android:id="@+id/textView_student_form_showError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputMark"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
         android:id="@+id/button_student_form_confirmAddNewStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/student_form_button_confirmAddNewStudent"/>
+        android:text="@string/student_form_button_confirmAddNewStudent"
+        app:layout_constraintTop_toBottomOf="@id/textView_student_form_showError"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

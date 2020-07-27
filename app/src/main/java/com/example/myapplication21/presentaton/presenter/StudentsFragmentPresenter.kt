@@ -73,9 +73,9 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
         val filteredListOfStudents: ArrayList<Student> = ArrayList()
 
         for (item in arrayListOfStudents) {
-            if (item.studentName.toLowerCase(Locale.ROOT).contains(editText.toLowerCase(Locale.ROOT)) ||
-                item.studentLastName.toLowerCase(Locale.ROOT).contains(editText.toLowerCase(Locale.ROOT)) ||
-                item.studentDescription.toLowerCase(Locale.ROOT).contains(editText.toLowerCase(Locale.ROOT)) ||
+            if (item.studentName?.toLowerCase(Locale.ROOT)?.contains(editText.toLowerCase(Locale.ROOT))!! ||
+                item.studentLastName?.toLowerCase(Locale.ROOT)?.contains(editText.toLowerCase(Locale.ROOT))!! ||
+                item.studentDescription?.toLowerCase(Locale.ROOT)?.contains(editText.toLowerCase(Locale.ROOT))!! ||
                 item.studentGroup.toString().contains(editText) ||
                 item.studentMark.toString().contains(editText)) {
                 filteredListOfStudents.add(item)

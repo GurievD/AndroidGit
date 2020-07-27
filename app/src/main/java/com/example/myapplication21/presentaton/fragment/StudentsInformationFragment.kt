@@ -1,17 +1,18 @@
 package com.example.myapplication21.presentaton.fragment
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
+import com.example.myapplication21.data.Student
 import com.example.myapplication21.presentaton.base.BaseContract
 import kotlinx.android.synthetic.main.activity_registration.*
 
 class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
     var rootView: View? = null
+    var student: Student? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,19 +33,13 @@ class StudentsInformationFragment: Fragment(), BaseContract.BaseView {
     }
 
     override fun initializeViews() {
-        val getImage: Bitmap? = arguments!!.getParcelable("bm")
+        student = arguments?.getParcelable("studObject")
 
-        val getName = arguments!!.getString("name")
-        val getGroup = arguments!!.getInt("group")
-        val getLastName = arguments!!.getString("lastName")
-        val getDescription = arguments!!.getString("description")
-        val getMark = arguments!!.getFloat("mark")
-        
-        textView_activity_registration_showNameAndLastName.text = "$getName $getLastName"
-        textView_activity_registration_showDescription.text = "$getDescription"
-        textView_activity_registration_showGroup.text = "$getGroup-й класс"
-        imageView_activity_registration_showImage.setImageBitmap(getImage)
-        textView_activity_registration_showMark.text = "Средняя оценка: $getMark"
+        textView_activity_registration_showNameAndLastName.text = "${student?.studentName} ${student?.studentLastName}"
+        textView_activity_registration_showDescription.text = "${student?.studentDescription}"
+        textView_activity_registration_showGroup.text = "${student?.studentGroup}-й класс"
+        imageView_activity_registration_showImage.setImageBitmap(student?.avatar)
+        textView_activity_registration_showMark.text = "Средняя оценка: ${student?.studentMark}"
     }
 
     override fun initializeListeners() {
