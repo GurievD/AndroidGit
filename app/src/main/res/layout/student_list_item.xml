@@ -14,22 +14,22 @@
             app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView_list_item_studentName"
+                    android:id="@+id/textView_student_list_item_studentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/textView_list_item_studentGroup"
+                    android:id="@+id/textView_student_list_item_studentGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"/>
 
                 <Button
-                    android:id="@+id/button_list_item_moreAboutStudent"
+                    android:id="@+id/button_student_list_item_moreAboutStudent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/list_item_button_moreAboutStudent"
+                    android:text="@string/student_list_item_button_moreAboutStudent"
                     android:layout_gravity="center"/>
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,25 +5,24 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.io.Serializable
 
-class Student(var studentName: String?, var studentLastName: String?, var studentDescription: String?, var avatar: Bitmap?, var studentGroup: Int, var studentMark: Float, var flag: Boolean) : Parcelable,
-    Serializable {
+class Student(var studentName: String, var studentLastName: String, var studentDescription: String, var studentAvatar : Bitmap?, var studentMark: Float, var flag: Boolean) : Serializable, Parcelable {
+
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readParcelable(Bitmap::class.java.classLoader),
-        parcel.readInt(),
         parcel.readFloat(),
         parcel.readByte() != 0.toByte()
     )
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(studentName)
         parcel.writeString(studentLastName)
         parcel.writeString(studentDescription)
-        parcel.writeParcelable(avatar, flags)
-        parcel.writeInt(studentGroup)
         parcel.writeFloat(studentMark)
+        parcel.writeParcelable(studentAvatar, flags)
         parcel.writeByte(if (flag) 1 else 0)
     }
 
@@ -40,5 +39,4 @@ class Student(var studentName: String?, var studentLastName: String?, var studen
             return arrayOfNulls(size)
         }
     }
-
 }

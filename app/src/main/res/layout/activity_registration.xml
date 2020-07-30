@@ -31,7 +31,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/textView_activity_registration_showGroup"
+        android:id="@+id/textView_activity_registration_showSubject"
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
@@ -52,7 +52,7 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/textView_activity_registration_showGroup"
+        app:layout_constraintTop_toBottomOf="@id/textView_activity_registration_showSubject"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 

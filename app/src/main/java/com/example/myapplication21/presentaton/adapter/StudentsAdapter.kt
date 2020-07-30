@@ -9,11 +9,11 @@ import com.example.myapplication21.data.Student
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import com.example.myapplication21.presentaton.viewholder.StudentHolder
 
-class StudentAdapter(var context: Context?, var arrayListOfStudents: ArrayList<Student>, var onStudentItemClickListener: OnStudentItemClickListener) :
+class StudentsAdapter(var context: Context?, var arrayListOfStudents: ArrayList<Student>, var onStudentItemClickListener: OnStudentItemClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflateView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
+        val inflateView = LayoutInflater.from(context).inflate(R.layout.student_list_item, parent, false)
         return StudentHolder(inflateView)
     }
 

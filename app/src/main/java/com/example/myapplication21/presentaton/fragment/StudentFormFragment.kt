@@ -29,7 +29,6 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
     var studentLastName: EditText? = null
     var studentDescription: EditText? = null
     var studentMark: EditText? = null
-    var studentGroup: EditText? = null
     var imageURI: Uri? = null
     var bitmap: Bitmap? = null
     var reqCode = 123
@@ -55,7 +54,6 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
         studentName = editText_student_form_inputName
         studentLastName = editText_student_form_inputLastName
         studentDescription = editText_student_form_inputDescription
-        studentGroup = editText_student_form_inputGroup
         studentMark = editText_student_form_inputMark
     }
 
@@ -66,16 +64,15 @@ class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListen
                 val editTextName = studentName?.text.toString()
                 val editTextLastName = studentLastName?.text.toString()
                 val editTextDescription = studentDescription?.text.toString()
-                val editTextGroup = studentGroup?.text.toString()
                 val editTextMark = studentMark?.text.toString()
 
-                if (editTextName.isNotBlank() && editTextLastName.isNotBlank() && editTextDescription.isNotBlank() && editTextGroup.isNotBlank() && editTextMark.isNotBlank())
+                if (editTextName.isNotBlank() && editTextLastName.isNotBlank() && editTextDescription.isNotBlank() && editTextMark.isNotBlank())
                 {
                     bitmap = imageView_student_form_showStudentPhoto.drawable.toBitmap()
                     when {
-                        editTextGroup.toInt() in 1..11 && editTextMark.toFloat() in 1.0..12.0 -> {
-                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, bitmap, editTextGroup.toInt(), editTextMark.toFloat(), true)
-                            val findStudentsFragment = fragmentManager?.findFragmentByTag("StudentsFragment") as StudentsFragment
+                        editTextMark.toFloat() in 1.0..12.0 -> {
+                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, bitmap, editTextMark.toFloat(), true)
+                            val findStudentsFragment = fragmentManager?.findFragmentByTag("MoreAboutSubject") as StudentsFragment
 
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
 

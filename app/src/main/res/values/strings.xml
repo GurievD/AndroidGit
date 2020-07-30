@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">Constraint Layouts. Args.</string>
+    <string name="app_name">Список классов</string>
     <string name="student_form_fieldBlank">Не все поля заполнены!</string>
-    <string name="student_form_must_be_in_range">Группа должна быть в пределе от 1 до 11\nОценка должна быть в пределе от 1 до 12</string>
+    <string name="student_form_must_be_in_range">Оценка должна быть в пределе от 1 до 12</string>
     <string name="activity_main_button_openRecyclerViewList">Открыть список RecyclerView</string>
     <string name="activity_registration_button_goBack">Вернуться обратно</string>
     <string name="fragment_students_button_sortByRandom">Фильтрация cлучайно</string>
     <string name="fragment_students_button_sortByGrade">Фильтрация по оценке</string>
     <string name="fragment_students_button_sortByName">Фильтрация по имени</string>
     <string name="fragment_students_editText_searchPlaceholder">Поиск</string>
-    <string name="list_item_button_moreAboutStudent">Подробнее</string>
+    <string name="student_list_item_button_moreAboutStudent">Подробнее</string>
     <string name="student_form_editText_inputName">Имя</string>
     <string name="student_form_editText_inputLastName">Фамилия</string>
     <string name="student_form_editText_inputDescription">Описание</string>
@@ -25,5 +25,7 @@
     <string name="programs_button_openSMS">Открыть SMS</string>
     <string name="social_network_button_sendToWhatsapp">Отправить на Whatsapp</string>
     <string name="social_network_editText_setMessage">Введите сообщение Whatsapp</string>
+    <string name="fragment_subjects_button_updateList">Обновить детали</string>
+    <string name="subject_list_item_button_moreAboutSubject">Подробнее о группе</string>
 
 </resources>

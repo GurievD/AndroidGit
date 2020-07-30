@@ -7,6 +7,8 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
+
+
     <GridLayout
         android:id="@+id/gridLayout_fragment_students_gridForPanel"
         android:layout_width="wrap_content"
@@ -90,18 +92,36 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout_fragment_students_gridForButtons"/>
 
+    <GridLayout
+        android:id="@+id/gridLayout_fragment_students_gridForButtons2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:columnCount="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_fragment_students_list">
+
+        <Button
+            android:id="@+id/button_fragment_students_getBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Назад"
+            android:layout_marginStart="115dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/FAB_fragment_students_goToForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/plus"
         app:fabSize="mini"
-        app:backgroundTint="#ffa500"
+        app:backgroundTint="@color/colorYellow"
         android:layout_marginEnd="5dp"
         android:layout_gravity="end"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_fragment_students_list"
         />
+    </GridLayout>
 
 
 
