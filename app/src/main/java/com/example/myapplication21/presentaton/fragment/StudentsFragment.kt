@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
 import com.example.myapplication21.data.Student
@@ -17,7 +16,7 @@ import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.fragment_students.*
 
 
-class StudentsFragment: Fragment(), StudentsFragmentContract.View, View.OnClickListener, OnStudentItemClickListener {
+class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
     var subject: Subject? = null
     var studentsAdapter: StudentsAdapter? = null
     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
@@ -39,17 +38,6 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, View.OnClickL
         initializeLayoutManager()
         initializeAdapter()
         studentsFragmentPresenter.initializeData(subject?.arrayListOfStudents!!)
-    }
-
-    fun setArguments(studentObject: Student, subject: Subject?): StudentsInformationFragment {
-        val studentsInformationFragment = StudentsInformationFragment()
-        val bundleOfArguments = Bundle()
-        bundleOfArguments.putParcelable("StudentObject", studentObject)
-        bundleOfArguments.putParcelable("StudentSubject", subject)
-
-        studentsInformationFragment.arguments = bundleOfArguments
-
-        return studentsInformationFragment
     }
 
     override fun onClick(view: View?) {
@@ -75,13 +63,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, View.OnClickL
                     initiateUpdateAdapter()
                 }
                 R.id.FAB_fragment_students_goToForm -> {
-                    val fragmentTransaction = fragmentManager?.beginTransaction()
-
-                    fragmentManager?.executePendingTransactions()
-                    fragmentTransaction?.add(R.id.relativeLayout_activity_students_fragmentContainer, StudentFormFragment(), "AddNewStudent")
-                    fragmentTransaction?.hide(this)
-                    fragmentTransaction?.addToBackStack("name")
-                    fragmentTransaction?.commit()
+                    baseTransaction(StudentFormFragment(), "AddNewStudent")
                 }
                 R.id.button_fragment_students_getBack -> {
                     editText_fragment_students_searchQuery.text = null
@@ -136,14 +118,7 @@ class StudentsFragment: Fragment(), StudentsFragmentContract.View, View.OnClickL
     }
 
     override fun onStudentItemClick(item: Student, adapterPosition: Int) {
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-
-        val studentsInformationFragment: StudentsInformationFragment = setArguments(studentsAdapter?.arrayListOfStudents!![adapterPosition], subject)
-        fragmentManager?.executePendingTransactions()
-
-        fragmentTransaction?.add(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
-        fragmentTransaction?.hide(this)
-        fragmentTransaction?.addToBackStack("name")
-        fragmentTransaction?.commit()
+        val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition], subject, null)
+        baseTransaction(studentsInformationFragment, "MoreAboutStudent")
     }
 }

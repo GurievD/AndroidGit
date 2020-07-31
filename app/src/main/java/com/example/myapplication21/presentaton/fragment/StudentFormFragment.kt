@@ -15,7 +15,6 @@ import android.widget.EditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
-import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
 import com.example.myapplication21.data.Student
 import com.example.myapplication21.presentaton.base.BaseContract
@@ -23,7 +22,7 @@ import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.student_form.*
 
 
-class StudentFormFragment: Fragment(), BaseContract.BaseView, View.OnClickListener {
+class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
     var rootView: View? = null
     var studentName: EditText? = null
     var studentLastName: EditText? = null

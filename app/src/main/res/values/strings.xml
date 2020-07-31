@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Список классов</string>
+    <string name="app_name">Наводим порядок. Base Fragment.</string>
     <string name="student_form_fieldBlank">Не все поля заполнены!</string>
     <string name="student_form_must_be_in_range">Оценка должна быть в пределе от 1 до 12</string>
     <string name="activity_main_button_openRecyclerViewList">Открыть список RecyclerView</string>
