@@ -1,6 +1,5 @@
 package com.example.myapplication21.presentaton.fragment
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,18 +43,18 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
             student = it?.getParcelable("StudentObject")
             subject = it?.getParcelable("StudentSubject")
         }
-        openAssets()
-        val drawableCreateFromStream = Drawable.createFromStream(inputStream, null)
+        openAssets("noavatar.png", student?.studentAvatar, imageView_activity_registration_showImage)
+//        val drawableCreateFromStream = Drawable.createFromStream(inputStream, null)
 
         textView_activity_registration_showNameAndLastName.text = "${student?.studentName} ${student?.studentLastName}"
         textView_activity_registration_showDescription.text = "${student?.studentDescription}"
         textView_activity_registration_showSubject.text = "Группа: ${subject?.subjectTitle}"
-        if (student?.studentAvatar != null) {
-            imageView_activity_registration_showImage.setImageBitmap(student?.studentAvatar)
-        }
-        else {
-            imageView_activity_registration_showImage.setImageDrawable(drawableCreateFromStream)
-        }
+//        if (student?.studentAvatar != null) {
+//            imageView_activity_registration_showImage.setImageBitmap(student?.studentAvatar)
+//        }
+//        else {
+//            imageView_activity_registration_showImage.setImageDrawable(drawableCreateFromStream)
+//        }
         textView_activity_registration_showMark.text = "Средняя оценка: ${student?.studentMark}"
     }
 
@@ -65,8 +64,8 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
         }
     }
 
-    fun openAssets(): InputStream? {
-        inputStream = context?.assets?.open("noavatar.png")
-        return inputStream
-    }
+//    fun openAssets(): InputStream? {
+//        inputStream = context?.assets?.open("noavatar.png")
+//        return inputStream
+//    }
 }

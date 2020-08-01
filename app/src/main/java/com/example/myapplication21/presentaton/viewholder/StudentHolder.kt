@@ -22,9 +22,9 @@ class StudentHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
             itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.colorLightGreen))
         }
         else {
-
             itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.colorLightRed))
         }
+
         buttonMoreAboutStudent.setOnClickListener {
             action.onStudentItemClick(student, adapterPosition)
         }

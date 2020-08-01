@@ -81,6 +81,6 @@ class SubjectsFragment: BaseFragment(), SubjectsFragmentContract.View, OnSubject
 
     override fun onSubjectItemClick(item: Subject, adapterPosition: Int) {
         val studentsFragment = baseArguments(StudentsFragment(), null, null, subjectsAdapter?.arrayListOfSubjects!![adapterPosition])
-        baseTransaction(studentsFragment, "MoreAboutSubject")
+        baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, studentsFragment, "MoreAboutSubject")
     }
 }

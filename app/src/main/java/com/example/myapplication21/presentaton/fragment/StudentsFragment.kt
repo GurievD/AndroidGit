@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_students.*
 class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
     var subject: Subject? = null
     var studentsAdapter: StudentsAdapter? = null
+
     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
 
     override fun onCreateView(
@@ -63,7 +64,7 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
                     initiateUpdateAdapter()
                 }
                 R.id.FAB_fragment_students_goToForm -> {
-                    baseTransaction(StudentFormFragment(), "AddNewStudent")
+                    baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, StudentFormFragment(), "AddNewStudent")
                 }
                 R.id.button_fragment_students_getBack -> {
                     editText_fragment_students_searchQuery.text = null
@@ -119,6 +120,6 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
 
     override fun onStudentItemClick(item: Student, adapterPosition: Int) {
         val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition], subject, null)
-        baseTransaction(studentsInformationFragment, "MoreAboutStudent")
+        baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
     }
 }
