@@ -4,10 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 abstract class BaseActivity: AppCompatActivity() {
-    abstract fun initializeDefaultFragment()
+    var currentFragment: Fragment? = null
 
-    abstract fun displayFragment(fragment : Fragment)
+    fun initializeDefaultFragment(fragment: Fragment, container: Int, tag: String){
+        if(currentFragment == null){
+            currentFragment = fragment
+
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+
+            supportFragmentManager.executePendingTransactions()
+
+            fragmentTransaction.add(container, fragment, tag)
+            fragmentTransaction.addToBackStack("Name")
+            fragmentTransaction.commit()        }
+    }
 
     abstract fun instanceOfHostActivity(): BaseActivity
-
 }
