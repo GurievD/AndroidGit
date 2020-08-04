@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Note
+import com.example.myapplication21.domain.Note
 import com.example.myapplication21.presentaton.recycler.OnNoteItemClickListener
 import kotlinx.android.synthetic.main.note_list_item.view.*
 import java.time.LocalDate

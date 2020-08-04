@@ -19,7 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Note
+import com.example.myapplication21.domain.Note
 import com.example.myapplication21.presentaton.base.BaseContract
 import kotlinx.android.synthetic.main.note_form.*
 import java.time.LocalDate
@@ -65,7 +65,12 @@ class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.
                 if (editTextTitle.isNotBlank() && editTextDescription.isNotBlank() && editTextDescription.isNotBlank() && editTextExpirationDate.isNotBlank()) {
                     bitmap = imageView_note_form_showNotePhoto.drawable.toBitmap()
 
-                    val noteObject = Note(editTextTitle, editTextDescription, editTextExpirationDate, bitmap)
+                    val noteObject = Note(
+                        editTextTitle,
+                        editTextDescription,
+                        editTextExpirationDate,
+                        bitmap
+                    )
                     val findNotesFragment = fragmentManager?.findFragmentByTag("NotesFragment") as NotesFragment
 
                     findNotesFragment.notesFragmentPresenter.initiateAddNote(noteObject)

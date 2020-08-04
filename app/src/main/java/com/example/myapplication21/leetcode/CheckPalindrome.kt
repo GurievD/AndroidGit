@@ -7,11 +7,14 @@ import com.example.myapplication21.R
 import kotlinx.android.synthetic.main.leetcode_file.*
 
 class CheckPalindrome: AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.leetcode_file)
+        initializeViews()
         initializeListeners()
+    }
+
+    fun initializeViews() {
     }
 
     fun initializeListeners() {

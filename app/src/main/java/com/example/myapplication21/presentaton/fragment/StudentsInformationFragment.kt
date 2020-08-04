@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Student
-import com.example.myapplication21.data.Subject
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.base.BaseContract
 import kotlinx.android.synthetic.main.activity_registration.*
 import java.io.InputStream
@@ -15,7 +14,6 @@ import java.io.InputStream
 class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
     var rootView: View? = null
     var student: Student? = null
-    var subject: Subject? = null
     var inputStream: InputStream? =  null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,14 +39,13 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
     override fun initializeViews() {
         arguments.let {
             student = it?.getParcelable("StudentObject")
-            subject = it?.getParcelable("StudentSubject")
         }
         openAssets("noavatar.png", student?.studentAvatar, imageView_activity_registration_showImage)
 //        val drawableCreateFromStream = Drawable.createFromStream(inputStream, null)
 
         textView_activity_registration_showNameAndLastName.text = "${student?.studentName} ${student?.studentLastName}"
         textView_activity_registration_showDescription.text = "${student?.studentDescription}"
-        textView_activity_registration_showSubject.text = "Группа: ${subject?.subjectTitle}"
+        textView_activity_registration_showSubject.text = "Группа: "
 //        if (student?.studentAvatar != null) {
 //            imageView_activity_registration_showImage.setImageBitmap(student?.studentAvatar)
 //        }

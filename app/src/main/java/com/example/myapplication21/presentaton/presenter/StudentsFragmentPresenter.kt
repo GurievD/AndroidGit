@@ -1,6 +1,6 @@
 package com.example.myapplication21.presentaton.presenter
 
-import com.example.myapplication21.data.Student
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.domain.usecase.function.sort.SortByMarkUseCase
 import com.example.myapplication21.domain.usecase.function.sort.SortByNameUseCase
 import com.example.myapplication21.domain.usecase.function.sort.SortByRandomUseCase
@@ -32,10 +32,65 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
 ////        studentsFragmentContractView?.initiateUpdateAdapter()
 ////    }
 
-    override fun initializeData(students: ArrayList<Student>) {
-        this.arrayListOfStudents.clear()
-        this.arrayListOfStudents.addAll(students)
-        studentsFragmentContractView?.processData(this.arrayListOfStudents)
+    override fun initializeData() {
+        studentsFragmentContractView?.processData(arrayListOfStudents.apply {
+            add(
+                Student(
+                    "Alexei",
+                    "Sidorov",
+                    "Good student",
+                    null,
+                    11,
+                    6.7F,
+                    true
+                )
+            )
+            add(
+                Student(
+                    "Denis",
+                    "Guryev",
+                    "Good student",
+                    null,
+                    10,
+                    6.7F,
+                    true
+                )
+            )
+            add(
+                Student(
+                    "Alexandr",
+                    "Petrov",
+                    "Good student",
+                    null,
+                    7,
+                    6.7F,
+                    true
+                )
+            )
+            add(
+                Student(
+                    "Pavel",
+                    "Smirnov",
+                    "Good student",
+                    null,
+                    7,
+                    6.7F,
+                    true
+                )
+            )
+            add(
+                Student(
+                    "Vladimir",
+                    "Vasilyev",
+                    "Good student",
+                    null,
+                    8,
+                    6.7F,
+                    true
+                )
+            )
+
+        })
         studentsFragmentContractView?.initiateUpdateAdapter()
     }
 

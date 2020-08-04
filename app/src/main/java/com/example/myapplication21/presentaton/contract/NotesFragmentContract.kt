@@ -1,6 +1,6 @@
 package com.example.myapplication21.presentaton.contract
 
-import com.example.myapplication21.data.Note
+import com.example.myapplication21.domain.Note
 import com.example.myapplication21.presentaton.base.BaseContract
 
 interface NotesFragmentContract {
