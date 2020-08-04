@@ -1,13 +1,13 @@
 package com.example.myapplication21.presentaton.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Student
-import com.example.myapplication21.data.Subject
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.adapter.StudentsAdapter
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
 import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresenter
@@ -17,8 +17,8 @@ import kotlinx.android.synthetic.main.fragment_students.*
 
 
 class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
-    var subject: Subject? = null
     var studentsAdapter: StudentsAdapter? = null
+    var arrayListOfStudents: ArrayList<Student> = ArrayList()
 
     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
 
@@ -31,6 +31,7 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
          return inflater.inflate(R.layout.fragment_students, container, false)
     }
 
+    @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeViews()
@@ -38,7 +39,10 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
-        studentsFragmentPresenter.initializeData(subject?.arrayListOfStudents!!)
+        studentsFragmentPresenter.initializeData()
+
+        getRoomTransactions()
+
     }
 
     override fun onClick(view: View?) {
@@ -77,10 +81,9 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun initializeViews(){
-        subject = arguments?.getParcelable("Subject")
 
         recyclerView_fragment_students_list?.visibility = View.VISIBLE
-        subject?.arrayListOfStudents!!.getBest3Students()
+        arrayListOfStudents.getBest3Students()
         initiateUpdateAdapter()
     }
 
@@ -94,14 +97,14 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun initializeAdapter(){
-        studentsAdapter = StudentsAdapter(context, subject?.arrayListOfStudents!!, this)
+        studentsAdapter = StudentsAdapter(context, arrayListOfStudents, this)
 
         recyclerView_fragment_students_list?.adapter = studentsAdapter
     }
 
     override fun processData(students: ArrayList<Student>) {
-        subject?.arrayListOfStudents?.clear()
-        subject?.arrayListOfStudents?.addAll(students)
+        arrayListOfStudents.clear()
+        arrayListOfStudents.addAll(students)
     }
 
     override fun initializeListeners() {
@@ -119,7 +122,7 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun onStudentItemClick(item: Student, adapterPosition: Int) {
-        val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition], subject, null)
+        val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition])
         baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
     }
 }

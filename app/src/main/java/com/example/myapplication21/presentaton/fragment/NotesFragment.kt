@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Note
+import com.example.myapplication21.domain.Note
 import com.example.myapplication21.presentaton.adapter.NotesAdapter
 import com.example.myapplication21.presentaton.contract.NotesFragmentContract
 import com.example.myapplication21.presentaton.presenter.NotesFragmentPresenter

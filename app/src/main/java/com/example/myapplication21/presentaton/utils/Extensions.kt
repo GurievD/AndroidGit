@@ -1,6 +1,6 @@
 package com.example.myapplication21.presentaton.utils
 
-import com.example.myapplication21.data.Student
+import com.example.myapplication21.domain.Student
 
 fun ArrayList<Student>.getBest3Students(){
     val getStudentCount = this.count()

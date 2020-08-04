@@ -1,6 +1,6 @@
 package com.example.myapplication21.presentaton.contract
 
-import com.example.myapplication21.data.Student
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.base.BaseContract
 
 interface StudentsFragmentContract {
@@ -17,7 +17,7 @@ interface StudentsFragmentContract {
     }
 
     interface Presenter : BaseContract.BasePresenter<View>{
-        fun initializeData(students: ArrayList<Student>)
+        fun initializeData()
 
         fun initiateSortStudentsByMark()
 

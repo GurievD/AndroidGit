@@ -1,4 +1,4 @@
-package com.example.myapplication21.data
+package com.example.myapplication21.domain
 
 import android.graphics.Bitmap
 import android.os.Parcel

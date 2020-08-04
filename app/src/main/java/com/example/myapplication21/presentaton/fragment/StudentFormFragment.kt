@@ -16,7 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Student
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.base.BaseContract
 import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.student_form.*
@@ -28,6 +28,8 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
     var studentLastName: EditText? = null
     var studentDescription: EditText? = null
     var studentMark: EditText? = null
+    var studentGroup: EditText? = null
+
     var imageURI: Uri? = null
     var bitmap: Bitmap? = null
     var reqCode = 123
@@ -54,6 +56,7 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
         studentLastName = editText_student_form_inputLastName
         studentDescription = editText_student_form_inputDescription
         studentMark = editText_student_form_inputMark
+        studentGroup = editText_student_form_inputGroup
     }
 
     override fun onClick(view: View?) {
@@ -64,14 +67,24 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
                 val editTextLastName = studentLastName?.text.toString()
                 val editTextDescription = studentDescription?.text.toString()
                 val editTextMark = studentMark?.text.toString()
+                val editTextGroup = studentGroup?.text.toString()
 
                 if (editTextName.isNotBlank() && editTextLastName.isNotBlank() && editTextDescription.isNotBlank() && editTextMark.isNotBlank())
                 {
                     bitmap = imageView_student_form_showStudentPhoto.drawable.toBitmap()
                     when {
                         editTextMark.toFloat() in 1.0..12.0 -> {
-                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, bitmap, editTextMark.toFloat(), true)
-                            val findStudentsFragment = fragmentManager?.findFragmentByTag("MoreAboutSubject") as StudentsFragment
+                            val studentObject =
+                                Student(
+                                    editTextName,
+                                    editTextLastName,
+                                    editTextDescription,
+                                    bitmap,
+                                    editTextGroup.toInt(),
+                                    editTextMark.toFloat(),
+                                    true
+                                )
+                            val findStudentsFragment = fragmentManager?.findFragmentByTag("MoreAboutStudent") as StudentsFragment
 
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
 

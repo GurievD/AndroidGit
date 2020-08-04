@@ -56,6 +56,16 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <EditText
+        android:id="@+id/editText_student_form_inputGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_form_editText_inputGroup"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputDescription"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
 
     <EditText
         android:id="@+id/editText_student_form_inputMark"
@@ -63,7 +73,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/student_form_editText_inputMark"
         android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputDescription"
+        app:layout_constraintTop_toBottomOf="@id/editText_student_form_inputGroup"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 

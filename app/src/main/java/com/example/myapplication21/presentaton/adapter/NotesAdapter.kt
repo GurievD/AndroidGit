@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Note
+import com.example.myapplication21.domain.Note
 import com.example.myapplication21.presentaton.recycler.OnNoteItemClickListener
 import com.example.myapplication21.presentaton.viewholder.NotesHolder
 import kotlinx.android.synthetic.main.note_list_item.view.*
