@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication21.R
-import com.example.myapplication21.data.Student
+import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import com.example.myapplication21.presentaton.viewholder.StudentHolder
 
