@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication21.R
 import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
+import kotlinx.android.synthetic.main.fragment_students.view.*
+import kotlinx.android.synthetic.main.fragment_viewpager.view.*
 import kotlinx.android.synthetic.main.student_list_item.view.*
 
 class StudentHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,7 +30,10 @@ class StudentHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         buttonMoreAboutStudent.setOnClickListener {
-            action.onStudentItemClick(student, adapterPosition)
+            action.onStudentItemClick2(student, adapterPosition)
+        }
+        itemView.setOnClickListener {
+            action.onStudentItemClick2(student, adapterPosition)
         }
     }
 }

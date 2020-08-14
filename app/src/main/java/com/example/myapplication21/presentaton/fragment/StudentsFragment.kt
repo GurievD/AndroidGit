@@ -1,6 +1,5 @@
 package com.example.myapplication21.presentaton.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
 import com.example.myapplication21.domain.Student
+import com.example.myapplication21.presentaton.adapter.CarouselAdapter
 import com.example.myapplication21.presentaton.adapter.StudentsAdapter
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
 import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresenter
@@ -15,50 +15,56 @@ import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListen
 import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.fragment_students.*
 
-
 class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
     var studentsAdapter: StudentsAdapter? = null
+
     var arrayListOfStudents: ArrayList<Student> = ArrayList()
-
+    var rootView: View? = null
+    var viewPagerFragment: ViewPagerFragment? = null
+    var carouselAdapter: CarouselAdapter? = null
     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-         return inflater.inflate(R.layout.fragment_students, container, false)
+        rootView = LayoutInflater.from(context).inflate(
+            R.layout.fragment_students,
+            container,
+            false)
+
+
+
+
+
+        return rootView
     }
 
-    @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeViews()
-        initializeListeners()
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
         studentsFragmentPresenter.initializeData()
+        initializeViews()
+        initializeListeners()
 
         getRoomTransactions()
 
     }
 
+    fun setArguments(studentObject: Student): StudentsInformationFragment {
+        val studentsInformationFragment = StudentsInformationFragment()
+        val bundleOfArguments = Bundle()
+        bundleOfArguments.putParcelable("StudentObject", studentObject)
+        studentsInformationFragment.arguments = bundleOfArguments
+
+        return studentsInformationFragment
+    }
+
     override fun onClick(view: View?) {
             when (view?.id) {
-                R.id.button_fragment_students_sortByName ->   {
-                    studentsFragmentPresenter.initiateSortStudentsByName()
-                    initiateUpdateAdapter()
-                }
-                R.id.button_fragment_students_sortByGrade -> {
-                    studentsFragmentPresenter.initiateSortStudentsByMark()
-                    initiateUpdateAdapter()
-                }
-                R.id.button_fragment_students_sortByRandom -> {
-                    studentsFragmentPresenter.initiateSortStudentsRandom()
-                    initiateUpdateAdapter()
-                }
                 R.id.FAB_fragment_students_findByQuery -> {
                     studentsFragmentPresenter.initiateFindStudentByQuery(editText_fragment_students_searchQuery.text.toString())
                     initiateUpdateAdapter()
@@ -77,7 +83,27 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
 
                     fragmentManager?.popBackStack()
                 }
+                R.id.button_fragment_students_changeView -> {
+                    baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, ViewPagerFragment(), "ChangeView")
+                }
             }
+    }
+
+
+    override fun onStudentItemClick(item: Student, adapterPosition: Int) {
+        val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition])
+        baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
+
+    }
+
+    override fun onStudentItemClick2(item: Student, adapterPosition: Int) {
+        val viewPagerFragment = baseArguments(ViewPagerFragment(), null, adapterPosition)
+        baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, viewPagerFragment, "ViewPager")
+    }
+
+    override fun initializePresenter() {
+        studentsFragmentPresenter = StudentsFragmentPresenter()
+        studentsFragmentPresenter.attach(this)
     }
 
     override fun initializeViews(){
@@ -85,11 +111,6 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
         recyclerView_fragment_students_list?.visibility = View.VISIBLE
         arrayListOfStudents.getBest3Students()
         initiateUpdateAdapter()
-    }
-
-    override fun initializePresenter() {
-        studentsFragmentPresenter = StudentsFragmentPresenter()
-        studentsFragmentPresenter.attach(this)
     }
 
     override fun initializeLayoutManager(){
@@ -103,26 +124,20 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun processData(students: ArrayList<Student>) {
-        arrayListOfStudents.clear()
-        arrayListOfStudents.addAll(students)
-    }
-
-    override fun initializeListeners() {
-        button_fragment_students_sortByName.setOnClickListener(this)
-        button_fragment_students_sortByGrade.setOnClickListener(this)
-        button_fragment_students_sortByRandom.setOnClickListener(this)
-        FAB_fragment_students_findByQuery.setOnClickListener(this)
-        FAB_fragment_students_clearField.setOnClickListener(this)
-        FAB_fragment_students_goToForm.setOnClickListener(this)
-        button_fragment_students_getBack.setOnClickListener(this)
+        this.arrayListOfStudents.clear()
+        this.arrayListOfStudents.addAll(students)
     }
 
     override fun initiateUpdateAdapter() {
         studentsAdapter?.notifyDataSetChanged()
+
     }
 
-    override fun onStudentItemClick(item: Student, adapterPosition: Int) {
-        val studentsInformationFragment = baseArguments(StudentsInformationFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition])
-        baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, studentsInformationFragment, "MoreAboutStudent")
+    override fun initializeListeners() {
+        FAB_fragment_students_findByQuery.setOnClickListener(this)
+        FAB_fragment_students_clearField.setOnClickListener(this)
+        FAB_fragment_students_goToForm.setOnClickListener(this)
+        button_fragment_students_getBack.setOnClickListener(this)
+        button_fragment_students_changeView.setOnClickListener(this)
     }
 }

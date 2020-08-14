@@ -15,10 +15,16 @@ import android.widget.EditText
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
 import com.example.myapplication21.domain.Student
+import com.example.myapplication21.presentaton.activity.MainActivity
+import com.example.myapplication21.presentaton.adapter.CarouselAdapter
 import com.example.myapplication21.presentaton.base.BaseContract
 import com.example.myapplication21.presentaton.utils.getBest3Students
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_viewpager.*
 import kotlinx.android.synthetic.main.student_form.*
 
 
@@ -29,10 +35,12 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
     var studentDescription: EditText? = null
     var studentMark: EditText? = null
     var studentGroup: EditText? = null
-
     var imageURI: Uri? = null
     var bitmap: Bitmap? = null
     var reqCode = 123
+    var viewPagerFragment: ViewPagerFragment? = null
+    var carouselAdapter: CarouselAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,14 +57,15 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
         super.onViewCreated(view, savedInstanceState)
         initializeViews()
         initializeListeners()
+
     }
 
     override fun initializeViews() {
         studentName = editText_student_form_inputName
         studentLastName = editText_student_form_inputLastName
         studentDescription = editText_student_form_inputDescription
-        studentMark = editText_student_form_inputMark
         studentGroup = editText_student_form_inputGroup
+        studentMark = editText_student_form_inputMark
     }
 
     override fun onClick(view: View?) {
@@ -66,32 +75,32 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
                 val editTextName = studentName?.text.toString()
                 val editTextLastName = studentLastName?.text.toString()
                 val editTextDescription = studentDescription?.text.toString()
-                val editTextMark = studentMark?.text.toString()
                 val editTextGroup = studentGroup?.text.toString()
+                val editTextMark = studentMark?.text.toString()
 
-                if (editTextName.isNotBlank() && editTextLastName.isNotBlank() && editTextDescription.isNotBlank() && editTextMark.isNotBlank())
+                if (editTextName.isNotBlank() && editTextLastName.isNotBlank() && editTextDescription.isNotBlank() && editTextGroup.isNotBlank() && editTextMark.isNotBlank())
                 {
                     bitmap = imageView_student_form_showStudentPhoto.drawable.toBitmap()
                     when {
-                        editTextMark.toFloat() in 1.0..12.0 -> {
-                            val studentObject =
-                                Student(
-                                    editTextName,
-                                    editTextLastName,
-                                    editTextDescription,
-                                    bitmap,
-                                    editTextGroup.toInt(),
-                                    editTextMark.toFloat(),
-                                    true
-                                )
-                            val findStudentsFragment = fragmentManager?.findFragmentByTag("MoreAboutStudent") as StudentsFragment
+                        editTextGroup.toInt() in 1..11 && editTextMark.toFloat() in 1.0..12.0  -> {
 
+                            val studentObject = Student(editTextName, editTextLastName, editTextDescription, editTextGroup.toInt(), editTextMark.toFloat(), bitmap, true)
+                            val viewPagerArgs = baseArguments(ViewPagerFragment(), studentObject, 4)
+
+                            val findStudentsFragment = fragmentManager?.findFragmentByTag("StudentsFragment") as StudentsFragment
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
+//                            val viewPagerFragment = fragmentManager?.findFragmentByTag("ViewPager") as? ViewPagerFragment //doesn't work
+                            viewPagerFragment?.initiateAddStudent(Student("Maxim", "Romanyuk", "Good student", 7, 5.9F, null, true)) //doesn't work
+
+
 
                             fragmentManager?.popBackStack()
 
                             findStudentsFragment.studentsFragmentPresenter.arrayListOfStudents.getBest3Students()
                             findStudentsFragment.studentsFragmentPresenter.initiateSortStudentsByMark()
+
+
+//                            baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, ViewPagerFragment(), "MainFragment")
                         }
                         else -> {
                             textView_student_form_showError.text = resources.getString(R.string.student_form_must_be_in_range)

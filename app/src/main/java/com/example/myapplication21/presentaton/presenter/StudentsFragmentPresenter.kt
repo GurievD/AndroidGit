@@ -15,7 +15,15 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
     var sortByNameUseCase: SortByNameUseCase = SortByNameUseCase()
     var sortByMarkUseCase: SortByMarkUseCase = SortByMarkUseCase()
     var sortByRandomUseCase: SortByRandomUseCase = SortByRandomUseCase()
-    var arrayListOfStudents: ArrayList<Student> = ArrayList()
+    var arrayListOfStudents: ArrayList<Student> = arrayListOf(
+        Student("Alexei", "Sidorov", "Good student", 11, 6.7F, null, true),
+        Student("Denis", "Guryev", "Good student", 10, 7.8F, null, true),
+        Student("Alexandr", "Petrov", "Good student", 7, 9.3F, null, true),
+        Student("Pavel", "Smirnov", "Good student", 7, 8.9F, null, true),
+        Student("Vladimir", "Vasilyev", "Good student", 8, 10.5F, null, true),
+        Student("Mikhail", "Krasnov", "Good student", 9, 11.8F, null, true)
+
+    )
 
 //        override fun initializeData(students : ArrayList<Student>){
 ////
@@ -32,65 +40,12 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
 ////        studentsFragmentContractView?.initiateUpdateAdapter()
 ////    }
 
-    override fun initializeData() {
-        studentsFragmentContractView?.processData(arrayListOfStudents.apply {
-            add(
-                Student(
-                    "Alexei",
-                    "Sidorov",
-                    "Good student",
-                    null,
-                    11,
-                    6.7F,
-                    true
-                )
-            )
-            add(
-                Student(
-                    "Denis",
-                    "Guryev",
-                    "Good student",
-                    null,
-                    10,
-                    6.7F,
-                    true
-                )
-            )
-            add(
-                Student(
-                    "Alexandr",
-                    "Petrov",
-                    "Good student",
-                    null,
-                    7,
-                    6.7F,
-                    true
-                )
-            )
-            add(
-                Student(
-                    "Pavel",
-                    "Smirnov",
-                    "Good student",
-                    null,
-                    7,
-                    6.7F,
-                    true
-                )
-            )
-            add(
-                Student(
-                    "Vladimir",
-                    "Vasilyev",
-                    "Good student",
-                    null,
-                    8,
-                    6.7F,
-                    true
-                )
-            )
+    override fun attach(view: StudentsFragmentContract.View) {
+        this.studentsFragmentContractView = view
+    }
 
-        })
+    override fun initializeData() {
+        studentsFragmentContractView?.processData(arrayListOfStudents)
         studentsFragmentContractView?.initiateUpdateAdapter()
     }
 
@@ -131,10 +86,6 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
         arrayListOfStudents.add(student)
         studentsFragmentContractView?.processData(arrayListOfStudents)
         studentsFragmentContractView?.initiateUpdateAdapter()
-    }
-
-    override fun attach(view: StudentsFragmentContract.View) {
-        this.studentsFragmentContractView = view
     }
 
     override fun onStop() {

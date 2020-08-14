@@ -17,7 +17,19 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".presentaton.activity.StudentsActivity">
-            
+
+        </activity>
+
+        <activity android:name=".presentaton.activity.ProgramsActivity">
+
+        </activity>
+
+        <activity android:name=".presentaton.activity.NotesActivity">
+
+        </activity>
+
+        <activity android:name=".presentaton.activity.BaseActivity">
+
         </activity>
 
         <activity android:name=".leetcode.CheckPalindrome">
@@ -27,20 +39,11 @@
         <activity android:name=".helpers.classes.SpeechRecognizer">
 
         </activity>
-
-        <activity android:name=".presentaton.activity.ProgramsActivity">
-
-        </activity>
-
-        <activity android:name=".helpers.classes.Camera">
-
-        </activity>
-
         <activity android:name=".helpers.classes.SocialNetwork">
 
         </activity>
 
-        <activity android:name=".presentaton.activity.NotesActivity">
+        <activity android:name=".helpers.classes.Camera">
 
         </activity>
 

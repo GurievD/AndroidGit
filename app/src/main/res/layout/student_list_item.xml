@@ -31,5 +31,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/student_list_item_button_moreAboutStudent"
                     android:layout_gravity="center"/>
+
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-
+    <include layout="@layout/activity_students"/>
 
     <GridLayout
         android:id="@+id/gridLayout_fragment_students_gridForPanel"
@@ -50,55 +50,32 @@
 
     </GridLayout>
 
-    <GridLayout
-        android:id="@+id/gridLayout_fragment_students_gridForButtons"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_fragment_students_changeView"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:columnCount="3"
+        android:text="Изменить представление"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout_fragment_students_gridForPanel">
-
-    <Button
-        android:id="@+id/button_fragment_students_sortByName"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
-        android:textSize="12sp"
-        android:text="@string/fragment_students_button_sortByName" />
-
-    <Button
-        android:id="@+id/button_fragment_students_sortByGrade"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
-        android:textSize="12sp"
-        android:text="@string/fragment_students_button_sortByGrade"/>
-
-    <Button
-        android:id="@+id/button_fragment_students_sortByRandom"
-        android:layout_width="105dp"
-        android:layout_height="80dp"
-        android:textSize="12sp"
-        android:text="@string/fragment_students_button_sortByRandom"/>
-
-    </GridLayout>
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout_fragment_students_gridForPanel"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_fragment_students_list"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="290dp"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout_fragment_students_gridForButtons"/>
+        app:layout_constraintTop_toBottomOf="@id/button_fragment_students_changeView"
+        app:layout_constraintBottom_toTopOf="@id/gridLayout_fragment_students_gridForButtons2" />
 
     <GridLayout
         android:id="@+id/gridLayout_fragment_students_gridForButtons2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
         android:columnCount="2"
+        android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_fragment_students_list">
@@ -107,20 +84,19 @@
             android:id="@+id/button_fragment_students_getBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:layout_marginStart="115dp"
             android:text="@string/fragment_students_button_getBack"
-            android:layout_marginStart="115dp"/>
+            android:textSize="12sp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/FAB_fragment_students_goToForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/plus"
-        app:fabSize="mini"
-        app:backgroundTint="@color/colorYellow"
-        android:layout_marginEnd="5dp"
-        android:layout_gravity="end"
-        />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/FAB_fragment_students_goToForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/plus"
+            app:backgroundTint="@color/colorYellow"
+            app:fabSize="mini" />
     </GridLayout>
 
 

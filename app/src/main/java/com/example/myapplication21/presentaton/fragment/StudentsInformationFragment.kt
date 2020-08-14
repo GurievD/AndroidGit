@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
 import com.example.myapplication21.domain.Student
 import com.example.myapplication21.presentaton.base.BaseContract
@@ -45,7 +46,7 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
 
         textView_activity_registration_showNameAndLastName.text = "${student?.studentName} ${student?.studentLastName}"
         textView_activity_registration_showDescription.text = "${student?.studentDescription}"
-        textView_activity_registration_showSubject.text = "Группа: "
+        textView_activity_registration_showSubject.text = "Группа: ${student?.studentGroup}-й класс"
 //        if (student?.studentAvatar != null) {
 //            imageView_activity_registration_showImage.setImageBitmap(student?.studentAvatar)
 //        }

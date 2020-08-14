@@ -2,6 +2,9 @@ package com.example.myapplication21.presentaton.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.myapplication21.R
+import com.example.myapplication21.presentaton.fragment.CarouselFragment
+import com.example.myapplication21.presentaton.fragment.ViewPagerFragment
 
 abstract class BaseActivity: AppCompatActivity() {
     var currentFragment: Fragment? = null
@@ -16,7 +19,8 @@ abstract class BaseActivity: AppCompatActivity() {
 
             fragmentTransaction.add(container, fragment, tag)
             fragmentTransaction.addToBackStack("Name")
-            fragmentTransaction.commit()        }
+            fragmentTransaction.commit()
+        }
     }
 
     abstract fun instanceOfHostActivity(): BaseActivity

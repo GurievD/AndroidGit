@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity
 class Subject {
     @PrimaryKey(autoGenerate = true)
-    var subjectId: Int = 0
-    var subjectTitle: String = ""
+    var id: Int = 0
+    var title: String = ""
 
     override fun toString(): String {
-        return "ID: $subjectId Имя группы: $subjectTitle"
+        return "ID группы: $id Имя группы: $title"
     }
 }

@@ -37,5 +37,6 @@
     <string name="note_form_button_datePicker">Выбрать дату</string>
     <string name="note_form_textView_showErrorMessage">Не все поля заполнены!</string>
     <string name="note_form_button_addNotePhoto">Добавить фото</string>
+    <string name="student_list_item_button_changeView">Изменить представление</string>
 
 </resources>
