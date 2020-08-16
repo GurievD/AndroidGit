@@ -19,10 +19,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.example.myapplication21.R
+import com.example.myapplication21.di.component.DaggerContextComponent
+import com.example.myapplication21.di.module.ContextModule
 import com.example.myapplication21.domain.Note
+import com.example.myapplication21.domain.usecase.function.context.MyContext
 import com.example.myapplication21.presentaton.base.BaseContract
 import kotlinx.android.synthetic.main.note_form.*
 import java.time.LocalDate
+import javax.inject.Inject
 
 class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.OnDateSetListener {
     var rootView: View? = null
@@ -31,13 +35,15 @@ class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.
     var noteExpirationDate: EditText? = null
     var imageURI: Uri? = null
     var bitmap: Bitmap? = null
+    @Inject
+    lateinit var myContext: MyContext
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = LayoutInflater.from(context).inflate(
+        rootView = inflater.inflate(
             R.layout.note_form,
             container,
             false)
@@ -46,6 +52,9 @@ class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        DaggerContextComponent.builder().contextModule(ContextModule(this)).build().injectNoteFormFragment(this)
+
         initializeViews()
         initializeListeners()
     }
@@ -79,13 +88,13 @@ class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.
                 }
                 else {
                     textView_note_form_showErrorMessage.text = resources.getString(R.string.note_form_textView_showErrorMessage)
-                    textView_note_form_showErrorMessage.setTextColor(ContextCompat.getColor(context?.applicationContext!!, R.color.colorRed))
+                    textView_note_form_showErrorMessage.setTextColor(ContextCompat.getColor(myContext.returnContext(context!!)?.applicationContext!!, R.color.colorRed))
                 }
             }
             R.id.button_note_form_datePicker -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     val datePickerDialog = DatePickerDialog(
-                        context!!,
+                            myContext.returnContext(context!!)!!,
                         android.R.style.Theme_Dialog,
                         this,
                         LocalDate.now().year,
@@ -96,7 +105,7 @@ class NoteFormFragment: BaseFragment(), BaseContract.BaseView, DatePickerDialog.
                 }
             }
             R.id.button_note_form_addNotePhoto -> {
-                if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(myContext.returnContext(context!!)!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 456)
                 } else {
                     val intentActionPick = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

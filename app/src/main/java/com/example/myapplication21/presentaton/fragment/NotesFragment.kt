@@ -6,17 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
+import com.example.myapplication21.di.component.DaggerContextComponent
+import com.example.myapplication21.di.module.ContextModule
 import com.example.myapplication21.domain.Note
+import com.example.myapplication21.domain.usecase.function.context.MyContext
 import com.example.myapplication21.presentaton.adapter.NotesAdapter
 import com.example.myapplication21.presentaton.contract.NotesFragmentContract
 import com.example.myapplication21.presentaton.presenter.NotesFragmentPresenter
 import com.example.myapplication21.presentaton.recycler.OnNoteItemClickListener
 import kotlinx.android.synthetic.main.fragment_notes.*
+import javax.inject.Inject
 
 class NotesFragment: BaseFragment(), NotesFragmentContract.View, OnNoteItemClickListener {
     var arrayListOfNotes: ArrayList<Note> = ArrayList()
     var notesAdapter: NotesAdapter? = null
     lateinit var notesFragmentPresenter: NotesFragmentPresenter
+    @Inject
+    lateinit var myContext: MyContext
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +35,9 @@ class NotesFragment: BaseFragment(), NotesFragmentContract.View, OnNoteItemClick
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        DaggerContextComponent.builder().contextModule(ContextModule(this)).build().injectNotesFragment(this)
+
         initializeViews()
         initializeListeners()
         initializePresenter()
@@ -56,11 +65,11 @@ class NotesFragment: BaseFragment(), NotesFragmentContract.View, OnNoteItemClick
     }
 
     override fun initializeLayoutManager() {
-        recyclerView_fragment_notes_list?.layoutManager = LinearLayoutManager(context)
+        recyclerView_fragment_notes_list?.layoutManager = LinearLayoutManager(myContext.returnContext(context!!))
     }
 
     override fun initializeAdapter() {
-        notesAdapter = NotesAdapter(context, arrayListOfNotes, this)
+        notesAdapter = NotesAdapter(myContext.returnContext(context!!), arrayListOfNotes, this)
 
         recyclerView_fragment_notes_list?.adapter = notesAdapter
     }

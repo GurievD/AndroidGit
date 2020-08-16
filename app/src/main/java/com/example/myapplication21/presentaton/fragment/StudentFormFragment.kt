@@ -18,7 +18,11 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
+import com.example.myapplication21.di.component.DaggerContextComponent
+import com.example.myapplication21.di.module.ContextModule
+
 import com.example.myapplication21.domain.Student
+import com.example.myapplication21.domain.usecase.function.context.MyContext
 import com.example.myapplication21.presentaton.activity.MainActivity
 import com.example.myapplication21.presentaton.adapter.CarouselAdapter
 import com.example.myapplication21.presentaton.base.BaseContract
@@ -26,6 +30,7 @@ import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_viewpager.*
 import kotlinx.android.synthetic.main.student_form.*
+import javax.inject.Inject
 
 
 class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
@@ -40,13 +45,15 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
     var reqCode = 123
     var viewPagerFragment: ViewPagerFragment? = null
     var carouselAdapter: CarouselAdapter? = null
+    @Inject
+    lateinit var myContext: MyContext
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = LayoutInflater.from(context).inflate(
+        rootView = inflater.inflate(
             R.layout.student_form,
             container,
             false)
@@ -55,6 +62,9 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        DaggerContextComponent.builder().contextModule(ContextModule(this)).build().injectStudentFormFragment(this)
+
         initializeViews()
         initializeListeners()
 
@@ -85,13 +95,9 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
                         editTextGroup.toInt() in 1..11 && editTextMark.toFloat() in 1.0..12.0  -> {
 
                             val studentObject = Student(editTextName, editTextLastName, editTextDescription, editTextGroup.toInt(), editTextMark.toFloat(), bitmap, true)
-                            val viewPagerArgs = baseArguments(ViewPagerFragment(), studentObject, 4)
 
                             val findStudentsFragment = fragmentManager?.findFragmentByTag("StudentsFragment") as StudentsFragment
                             findStudentsFragment.studentsFragmentPresenter.initiateAddStudent(studentObject)
-//                            val viewPagerFragment = fragmentManager?.findFragmentByTag("ViewPager") as? ViewPagerFragment //doesn't work
-                            viewPagerFragment?.initiateAddStudent(Student("Maxim", "Romanyuk", "Good student", 7, 5.9F, null, true)) //doesn't work
-
 
 
                             fragmentManager?.popBackStack()
@@ -101,20 +107,21 @@ class StudentFormFragment: BaseFragment(), BaseContract.BaseView {
 
 
 //                            baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, ViewPagerFragment(), "MainFragment")
+
                         }
                         else -> {
                             textView_student_form_showError.text = resources.getString(R.string.student_form_must_be_in_range)
-                            textView_student_form_showError.setTextColor(ContextCompat.getColor(context?.applicationContext!!, R.color.colorRed))
+                            textView_student_form_showError.setTextColor(ContextCompat.getColor(myContext.returnContext(context!!)?.applicationContext!!, R.color.colorRed))
                         }
                     }
                 }
                 else {
                     textView_student_form_showError.text = resources.getString(R.string.student_form_fieldBlank)
-                    textView_student_form_showError.setTextColor(ContextCompat.getColor(context?.applicationContext!!, R.color.colorRed))
+                    textView_student_form_showError.setTextColor(ContextCompat.getColor(myContext.returnContext(context!!)?.applicationContext!!, R.color.colorRed))
                 }
             }
             R.id.button_student_form_addStudentPhoto -> {
-                if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(myContext.returnContext(context!!)!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     reqCode = 456
                     requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), reqCode)
                 } else {

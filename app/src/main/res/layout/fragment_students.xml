@@ -23,16 +23,18 @@
             android:id="@+id/editText_fragment_students_searchQuery"
             android:layout_width="220dp"
             android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="5dp"
+            android:layout_row="0"
+            android:layout_column="0"
             android:layout_gravity="start"
-            android:inputType="text"
-            android:hint="@string/fragment_students_editText_searchPlaceholder"/>
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/fragment_students_editText_searchPlaceholder"
+            android:inputType="text" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/FAB_fragment_students_findByQuery"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/magnifier"
             app:fabSize="mini"
 
@@ -40,11 +42,11 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/FAB_fragment_students_clearField"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/clear"
-            app:fabSize="mini"
             app:backgroundTint="#116062"
+            app:fabSize="mini"
 
             />
 
@@ -93,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/plus"
             app:backgroundTint="@color/colorYellow"
             app:fabSize="mini" />

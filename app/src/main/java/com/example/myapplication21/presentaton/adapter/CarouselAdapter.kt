@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.myapplication21.presentaton.fragment.MainPageFragment
 import com.example.myapplication21.presentaton.fragment.NotesFragment
 import com.example.myapplication21.presentaton.fragment.StudentsFragment
@@ -26,5 +27,9 @@ class CarouselAdapter(manager: FragmentManager, var context: Context) : Fragment
 
     override fun getPageTitle(position: Int): CharSequence? {
         return arrayListOfTabs[position]
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return PagerAdapter.POSITION_NONE
     }
 }

@@ -10,15 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.myapplication21.R
+import com.example.myapplication21.di.component.DaggerContextComponent
+import com.example.myapplication21.di.module.ContextModule
+import com.example.myapplication21.domain.usecase.function.context.MyContext
+
 import com.example.myapplication21.leetcode.CheckPalindrome
 import com.example.myapplication21.presentaton.activity.NotesActivity
 import com.example.myapplication21.presentaton.activity.ProgramsActivity
 import com.example.myapplication21.presentaton.activity.StudentsActivity
 import kotlinx.android.synthetic.main.camera.*
 import kotlinx.android.synthetic.main.fragment_mainpage.*
+import javax.inject.Inject
 
 class MainPageFragment : BaseFragment() {
     var imageURI: Uri? = null
+    @Inject
+    lateinit var myContext: MyContext
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,28 +36,32 @@ class MainPageFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        DaggerContextComponent.builder().contextModule(ContextModule(this)).build().injectMainPageFragment(this)
+
+
         initializeListeners()
     }
 
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.button_activity_main_goToRecyclerViewList -> {
-                val intentStudentsActivity = Intent(context, StudentsActivity::class.java)
+                val intentStudentsActivity = Intent(myContext.returnContext(context!!), StudentsActivity::class.java)
                 startActivity(intentStudentsActivity)
             }
             R.id.button_activity_main_openLeetCode -> {
-                val intentCheckPalindrome = Intent(context, CheckPalindrome::class.java)
+                val intentCheckPalindrome = Intent(myContext.returnContext(context!!), CheckPalindrome::class.java)
                 startActivity(intentCheckPalindrome)
             }
             R.id.button_activity_main_programs -> {
-                val intentSpeechRecognizer = Intent(context, ProgramsActivity::class.java)
+                val intentSpeechRecognizer = Intent(myContext.returnContext(context!!), ProgramsActivity::class.java)
                 startActivity(intentSpeechRecognizer)
             }
             R.id.button_activity_main_goToNoteList -> {
-                val intentNotesActivity = Intent(context, NotesActivity::class.java)
+                val intentNotesActivity = Intent(myContext.returnContext(context!!), NotesActivity::class.java)
                 startActivity(intentNotesActivity)
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                    Toast.makeText(context, "Увы, для работы нужен Oreo (API 26) :(\nСкачайте его!", Toast.LENGTH_LONG).show()
+                    Toast.makeText(myContext.returnContext(context!!), "Увы, для работы нужен Oreo (API 26) :(\nСкачайте его!", Toast.LENGTH_LONG).show()
                 }
             }
         }

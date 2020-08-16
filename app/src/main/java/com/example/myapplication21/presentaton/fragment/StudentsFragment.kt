@@ -1,12 +1,17 @@
 package com.example.myapplication21.presentaton.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
+import com.example.myapplication21.di.component.DaggerContextComponent
+import com.example.myapplication21.di.module.ContextModule
+
 import com.example.myapplication21.domain.Student
+import com.example.myapplication21.domain.usecase.function.context.MyContext
 import com.example.myapplication21.presentaton.adapter.CarouselAdapter
 import com.example.myapplication21.presentaton.adapter.StudentsAdapter
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
@@ -14,6 +19,8 @@ import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresent
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.fragment_students.*
+import javax.inject.Inject
+
 
 class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
     var studentsAdapter: StudentsAdapter? = null
@@ -23,13 +30,14 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     var viewPagerFragment: ViewPagerFragment? = null
     var carouselAdapter: CarouselAdapter? = null
     lateinit var studentsFragmentPresenter: StudentsFragmentPresenter
+    @Inject lateinit var myContext: MyContext
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        rootView = LayoutInflater.from(context).inflate(
+        rootView = inflater.inflate(
             R.layout.fragment_students,
             container,
             false)
@@ -43,15 +51,15 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        DaggerContextComponent.builder().contextModule(ContextModule(this)).build().injectStudentsFragment(this)
+
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
         studentsFragmentPresenter.initializeData()
         initializeViews()
         initializeListeners()
-
-        getRoomTransactions()
-
     }
 
     fun setArguments(studentObject: Student): StudentsInformationFragment {
@@ -97,7 +105,7 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun onStudentItemClick2(item: Student, adapterPosition: Int) {
-        val viewPagerFragment = baseArguments(ViewPagerFragment(), null, adapterPosition)
+        val viewPagerFragment = baseArguments(ViewPagerFragment(), studentsAdapter?.arrayListOfStudents!![adapterPosition], adapterPosition)
         baseTransaction(R.id.relativeLayout_activity_students_fragmentContainer, viewPagerFragment, "ViewPager")
     }
 
@@ -114,11 +122,11 @@ class StudentsFragment: BaseFragment(), StudentsFragmentContract.View, OnStudent
     }
 
     override fun initializeLayoutManager(){
-        recyclerView_fragment_students_list?.layoutManager = LinearLayoutManager(context)
+        recyclerView_fragment_students_list?.layoutManager = LinearLayoutManager(myContext.returnContext(context!!))
     }
 
     override fun initializeAdapter(){
-        studentsAdapter = StudentsAdapter(context, arrayListOfStudents, this)
+        studentsAdapter = StudentsAdapter(myContext.returnContext(context!!), arrayListOfStudents, this)
 
         recyclerView_fragment_students_list?.adapter = studentsAdapter
     }

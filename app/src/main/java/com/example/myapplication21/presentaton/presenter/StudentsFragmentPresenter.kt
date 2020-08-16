@@ -5,6 +5,7 @@ import com.example.myapplication21.domain.usecase.function.sort.SortByMarkUseCas
 import com.example.myapplication21.domain.usecase.function.sort.SortByNameUseCase
 import com.example.myapplication21.domain.usecase.function.sort.SortByRandomUseCase
 import com.example.myapplication21.presentaton.contract.StudentsFragmentContract
+import com.example.myapplication21.presentaton.fragment.ViewPagerFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -15,6 +16,7 @@ class StudentsFragmentPresenter : StudentsFragmentContract.Presenter {
     var sortByNameUseCase: SortByNameUseCase = SortByNameUseCase()
     var sortByMarkUseCase: SortByMarkUseCase = SortByMarkUseCase()
     var sortByRandomUseCase: SortByRandomUseCase = SortByRandomUseCase()
+    var viewPagerFragment: ViewPagerFragment? = null
     var arrayListOfStudents: ArrayList<Student> = arrayListOf(
         Student("Alexei", "Sidorov", "Good student", 11, 6.7F, null, true),
         Student("Denis", "Guryev", "Good student", 10, 7.8F, null, true),

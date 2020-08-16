@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.myapplication21.R
 import com.example.myapplication21.domain.Student
@@ -21,7 +23,7 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = LayoutInflater.from(context).inflate(
+        rootView = inflater.inflate(
             R.layout.activity_registration,
             container,
             false)
@@ -33,6 +35,9 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        imageView_activity_registration_showImage?.layoutParams?.width = 100
+        imageView_activity_registration_showImage?.layoutParams?.height = 100
+
         initializeViews()
         initializeListeners()
     }
@@ -57,13 +62,6 @@ class StudentsInformationFragment: BaseFragment(), BaseContract.BaseView {
     }
 
     override fun initializeListeners() {
-        button_activity_registration_goBack.setOnClickListener{
-            fragmentManager?.popBackStack()
-        }
-    }
 
-//    fun openAssets(): InputStream? {
-//        inputStream = context?.assets?.open("noavatar.png")
-//        return inputStream
-//    }
+    }
 }

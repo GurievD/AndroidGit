@@ -13,7 +13,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            initializeDefaultFragment(carouselFragment, R.id.main_container, "MainFragment")
+            initializeDefaultFragment(carouselFragment, R.id.main_container, "CarouselFragment")
         }
         else {
             carouselFragment = supportFragmentManager.fragments[0] as CarouselFragment
