@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:id="@+id/gridLayout_fragment_students_gridForButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:columnCount="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <Button
+        android:id="@+id/button_fragment_viewpager_sortByName"
+        android:text="Фильтрация по имени"
+        android:layout_width="105dp"
+        android:layout_height="80dp"
+        android:textSize="12sp"/>
+    <Button
+        android:id="@+id/button_fragment_viewpager_sortByMark"
+        android:text="Фильтрация по оценке"
+        android:layout_width="105dp"
+        android:layout_height="80dp"
+        android:textSize="12sp"/>
+    <Button
+        android:id="@+id/button_fragment_viewpager_sortByRandom"
+        android:text="Фильтрация случайно"
+        android:layout_width="105dp"
+        android:layout_height="80dp"
+        android:textSize="12sp"/>
+
+    </GridLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager_fragment_viewpager_myViewPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gridLayout_fragment_students_gridForButtons"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
