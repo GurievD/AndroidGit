@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication21.R
+import com.example.myapplication21.data.Currency
+import com.example.myapplication21.data.api.APIConnection
 import com.example.myapplication21.di.component.DaggerDatabaseComponent
 import com.example.myapplication21.di.module.DatabaseModule
 import com.example.myapplication21.domain.Student
@@ -20,6 +22,8 @@ import com.example.myapplication21.presentaton.presenter.StudentsFragmentPresent
 import com.example.myapplication21.presentaton.recycler.OnStudentItemClickListener
 import com.example.myapplication21.presentaton.utils.getBest3Students
 import kotlinx.android.synthetic.main.fragment_students.*
+import retrofit2.Call
+import retrofit2.Response
 import javax.inject.Inject
 
 class StudentsFragment : BaseFragment(), StudentsFragmentContract.View, OnStudentItemClickListener {
@@ -42,27 +46,18 @@ class StudentsFragment : BaseFragment(), StudentsFragmentContract.View, OnStuden
             container,
             false)
 
-
-
-
-
         return rootView
     }
 
     @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initializePresenter()
         initializeLayoutManager()
         initializeAdapter()
         studentsFragmentPresenter.initializeData()
         initializeViews()
         initializeListeners()
-
-
-
-
     }
 
     fun setArguments(studentObject: Student): StudentsInformationFragment {

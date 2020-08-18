@@ -47,6 +47,10 @@
 
         </activity>
 
+        <activity android:name=".presentaton.activity.CurrencyActivity">
+
+        </activity>
+
         <activity android:name=".presentaton.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

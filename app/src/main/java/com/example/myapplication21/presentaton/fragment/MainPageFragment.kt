@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.myapplication21.R
 import com.example.myapplication21.leetcode.CheckPalindrome
+import com.example.myapplication21.presentaton.activity.CurrencyActivity
 import com.example.myapplication21.presentaton.activity.NotesActivity
 import com.example.myapplication21.presentaton.activity.ProgramsActivity
 import com.example.myapplication21.presentaton.activity.StudentsActivity
@@ -53,6 +54,10 @@ class MainPageFragment : BaseFragment() {
                     Toast.makeText(context, "Увы, для работы нужен Oreo (API 26) :(\nСкачайте его!", Toast.LENGTH_LONG).show()
                 }
             }
+            R.id.button_activity_main_goToCurrencies -> {
+                val intentCurrenciesActivity = Intent(context, CurrencyActivity::class.java)
+                startActivity(intentCurrenciesActivity)
+            }
         }
     }
 
@@ -70,5 +75,6 @@ class MainPageFragment : BaseFragment() {
         button_activity_main_openLeetCode.setOnClickListener(this)
         button_activity_main_programs.setOnClickListener(this)
         button_activity_main_goToNoteList.setOnClickListener(this)
+        button_activity_main_goToCurrencies.setOnClickListener(this)
     }
 }

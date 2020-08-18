@@ -13,39 +13,48 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.25"/>
 
         <Button
             android:id="@+id/button_activity_main_goToNoteList"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/activity_main_button_goToNoteList"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_activity_main_goToRecyclerViewList"
-            app:layout_constraintVertical_bias="0.242"/>
+            app:layout_constraintTop_toBottomOf="@+id/button_activity_main_goToRecyclerViewList" />
 
         <Button
             android:id="@+id/button_activity_main_openLeetCode"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="@string/activity_main_button_openLeetCode"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_activity_main_goToNoteList"
-            app:layout_constraintVertical_bias="0.320" />
+            app:layout_constraintTop_toBottomOf="@+id/button_activity_main_goToNoteList"
+            android:layout_marginTop="10dp" />
 
         <Button
             android:id="@+id/button_activity_main_programs"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="@string/activity_main_button_programs"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_activity_main_openLeetCode"
-            app:layout_constraintVertical_bias="0.450" />
+            app:layout_constraintTop_toBottomOf="@+id/button_activity_main_openLeetCode"
+            android:layout_marginTop="10dp"  />
+
+        <Button
+            android:id="@+id/button_activity_main_goToCurrencies"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Открыть курс валют"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_activity_main_programs"
+            android:layout_marginTop="10dp"  />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
